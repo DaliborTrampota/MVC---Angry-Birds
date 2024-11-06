@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Controller">
+      <UniqueIdentifier>{12f9c7c0-a8ee-48f6-8326-5bd6c17665d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{71bdaa8d-03bd-4105-97f0-befc67008fe8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View">
+      <UniqueIdentifier>{7138f0ee-7353-462d-b04a-bc878c54b39a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Visitor">
+      <UniqueIdentifier>{f47d8c98-9c65-4d33-821d-61a9b5f44637}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Concrete">
+      <UniqueIdentifier>{cfd403bc-cf9c-4f0b-b13a-6915419f95cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Abstract">
+      <UniqueIdentifier>{b22ed38e-c7c9-4c9f-bba7-d54b6536eb09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AbstractFactory">
+      <UniqueIdentifier>{13299be8-0f2a-4d16-a4f4-a4828d4c6b21}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="View.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLDrawer.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="AbsMissile.cpp">
+      <Filter>Source Files\Model\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="AbsPlayer.cpp">
+      <Filter>Source Files\Model\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerA.cpp">
+      <Filter>Source Files\Model\Concrete</Filter>
+    </ClCompile>
+    <ClCompile Include="MissileA.cpp">
+      <Filter>Source Files\Model\Concrete</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectFactoryA.cpp">
+      <Filter>Source Files\AbstractFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="IVisitable.h">
+      <Filter>Source Files\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="IVisitor.h">
+      <Filter>Source Files\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="View.h">
+      <Filter>Source Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLDrawer.h">
+      <Filter>Source Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerA.h">
+      <Filter>Source Files\Model\Concrete</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Source Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AbsPlayer.h">
+      <Filter>Source Files\Model\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="AbsMissile.h">
+      <Filter>Source Files\Model\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameObjectFactory.h">
+      <Filter>Source Files\AbstractFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="MissileA.h">
+      <Filter>Source Files\Model\Concrete</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectFactoryA.h">
+      <Filter>Source Files\AbstractFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLResourceManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\images\back.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\images\bound.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\images\cannon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\images\collision.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\images\enemy1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\images\enemy2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\images\enemy2WithBlood.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\images\fit.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\images\missile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
