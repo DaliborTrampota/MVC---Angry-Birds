@@ -133,7 +133,8 @@
   <ItemGroup>
     <ClCompile Include="AbsMissile.cpp" />
     <ClCompile Include="AbsPlayer.cpp" />
-    <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="LifetimeGameObject.cpp" />
+    <ClCompile Include="SDLController.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectFactoryA.cpp" />
@@ -144,12 +145,16 @@
     <ClCompile Include="PlayerA.cpp" />
     <ClCompile Include="SDLDrawer.cpp" />
     <ClCompile Include="SDLResourceManager.cpp" />
-    <ClCompile Include="View.cpp" />
+    <ClCompile Include="SDLView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbsMissile.h" />
     <ClInclude Include="AbsPlayer.h" />
-    <ClInclude Include="Controller.h" />
+    <ClInclude Include="Configuration.h" />
+    <ClInclude Include="IController.h" />
+    <ClInclude Include="IView.h" />
+    <ClInclude Include="LifetimeGameObject.h" />
+    <ClInclude Include="SDLController.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectFactoryA.h" />
@@ -162,7 +167,7 @@
     <ClInclude Include="PlayerA.h" />
     <ClInclude Include="SDLDrawer.h" />
     <ClInclude Include="SDLResourceManager.h" />
-    <ClInclude Include="View.h" />
+    <ClInclude Include="SDLView.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\images\back.jpg" />

@@ -13,6 +13,14 @@ Model::Model(Game* game) :
 	m_player = m_objectFactory->createPlayer();
 	
 
+void Model::moveUp()
+{
+	m_player->moveUp();
+}
+
+void Model::moveDown()
+{
+	m_player->moveDown();
 }
 
 void Model::aimUp()

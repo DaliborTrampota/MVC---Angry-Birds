@@ -18,6 +18,8 @@ public:
 	Model() = default;
 	Model(Game* game);
 
+	void moveUp();
+	void moveDown();
 	void aimUp();
 	void aimDown();
 	void shoot();

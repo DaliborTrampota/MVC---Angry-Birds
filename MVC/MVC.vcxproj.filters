@@ -41,13 +41,13 @@
     <ClCompile Include="Math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Controller.cpp">
+    <ClCompile Include="SDLController.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
     <ClCompile Include="Model.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="View.cpp">
+    <ClCompile Include="SDLView.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
@@ -74,6 +74,9 @@
     <ClCompile Include="SDLResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LifetimeGameObject.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IVisitable.h">
@@ -82,7 +85,7 @@
     <ClInclude Include="IVisitor.h">
       <Filter>Source Files\Visitor</Filter>
     </ClInclude>
-    <ClInclude Include="View.h">
+    <ClInclude Include="SDLView.h">
       <Filter>Source Files\View</Filter>
     </ClInclude>
     <ClInclude Include="SDLDrawer.h">
@@ -94,7 +97,7 @@
     <ClInclude Include="Model.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
-    <ClInclude Include="Controller.h">
+    <ClInclude Include="SDLController.h">
       <Filter>Source Files\Controller</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
@@ -122,6 +125,18 @@
       <Filter>Source Files\AbstractFactory</Filter>
     </ClInclude>
     <ClInclude Include="SDLResourceManager.h" />
+    <ClInclude Include="Configuration.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IView.h">
+      <Filter>Source Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="IController.h">
+      <Filter>Source Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="LifetimeGameObject.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\images\back.jpg">

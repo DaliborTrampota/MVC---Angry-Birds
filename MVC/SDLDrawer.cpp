@@ -65,7 +65,8 @@ void SDLDrawer::doRender()
 
 SDL_Rect SDLDrawer::getWindowRect() const
 {
+	SDL_assert(m_renderer);
 	int w, h;
-	SDL_GetWindowSize(m_window, &w, &h);
+	SDL_GetRendererOutputSize(m_renderer, &w, &h);
 	return SDL_Rect{ 0, 0, w, h };
 }

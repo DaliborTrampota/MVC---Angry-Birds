@@ -11,6 +11,8 @@ public:
 
 	void acceptVisitor(IVisitor* visitor) override;
 
+	virtual void moveUp() = 0;
+	virtual void moveDown() = 0;
 	virtual void aimUp() = 0;
 	virtual void aimDown() = 0;
 	virtual AbsMissile* shoot() = 0;

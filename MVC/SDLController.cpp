@@ -1,4 +1,4 @@
-#include "Controller.h"
+#include "SDLController.h"
 
 #include "Model.h"
 #include "Math.h"
@@ -6,30 +6,31 @@
 
 #include "SDL2/SDL.h"
 
-Controller::Controller(Model* model) : m_model(model)
+SDLController::SDLController(Model* model) : m_model(model)
 {
 }
 
-void Controller::onKeyPress(SDL_Scancode key)
+void SDLController::onKeyPress(SDL_Scancode key)
 {
 	switch (key) {
 	case SDL_SCANCODE_W:
-		m_model->aimUp();
+		m_model->moveUp();
 		break;
 
 	case SDL_SCANCODE_S:
-		m_model->aimDown();
+		m_model->moveDown();
 		break;
 
 	case SDL_SCANCODE_SPACE:
 		m_model->shoot();
 		break;
+
 	}
 }
 
 
 
-void Controller::pollEvents()
+void SDLController::pollEvents()
 {
 	SDL_Event e;
 	SDL_PollEvent(&e);

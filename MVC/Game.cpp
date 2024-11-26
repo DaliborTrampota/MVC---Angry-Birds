@@ -5,7 +5,7 @@
 Game::Game()
 {	
 	m_model = Model(this);
-	m_view = View(&m_model);
+	m_view = SDLView(m_model);
 	m_controller = m_view.getController();
 
 	Run();
@@ -26,5 +26,10 @@ void Game::Run()
 
 		prevTime = curTime;
 	}
+}
+
+Rect<int> Game::getWindowRect() const
+{
+	return m_view.getWindowRect();
 }
 

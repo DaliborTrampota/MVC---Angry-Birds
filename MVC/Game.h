@@ -1,9 +1,10 @@
 #pragma once
 
-#include "View.h"
+#include "SDLView.h"
 #include "Model.h"
-#include "Controller.h"
+#include "Math.h"
 
+class SDLController;
 
 class Game
 {
@@ -12,11 +13,12 @@ public:
 
 	void Run();
 
+	Rect<int> getWindowRect() const;
 
 private:
 	Model m_model;
-	View m_view;
-	Controller* m_controller;
+	SDLView m_view;
+	SDLController* m_controller;
 
 };
 

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Controller.h"
+#include "SDLController.h"
 #include "SDLDrawer.h"
+#include "IView.h"
 
 #include <unordered_map>
 #include <string>
-
 
 class Model;
 class GameObject;
@@ -13,22 +13,22 @@ struct SDL_Rect;
 
 
 // SDL2 View
-class View
+class SDLView // : public IView
 {
 public:
-	View() = default;
-	View(Model* model);
+	SDLView() = default;
+	SDLView(Model* model);
 
 	void render();
-	SDL_Rect getWindowRect() const;
+	Rect<int> getWindowRect() const;
 
-	Controller* getController() {
+	SDLController* getController() {
 		return &m_cont;
 	}
 
 private:
 	Model* m_model;
-	Controller m_cont;
+	SDLController m_cont;
 	SDLDrawer m_gameDrawer;
 };
 

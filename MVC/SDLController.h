@@ -1,16 +1,19 @@
 #pragma once
 
+#include "IController.h"
+
 #include "SDL2/SDL.h"
 #undef main
+
 
 class Model;
 
 // SDL2 Controller
-class Controller
+class SDLController // : public IController<SDL_Scancode>
 {
 public:
-	Controller() = default;
-	Controller(Model* model);
+	SDLController() = default;
+	SDLController(Model* model);
 
 
 	void onKeyPress(SDL_Scancode key);

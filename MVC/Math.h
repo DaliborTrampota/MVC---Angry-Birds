@@ -1,6 +1,5 @@
 #pragma once
 
-
 template <class T>
 struct Vec2 {
 	T x, y;
@@ -11,4 +10,9 @@ struct Vec2 {
 		y += other.y;
 		return *this;
 	}
+};
+
+template <class T = int>
+struct Rect {
+	T x, y, w, h;
 };
