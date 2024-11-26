@@ -16,7 +16,7 @@ public:
 	Rect<int> getWindowRect() const;
 
 private:
-	Model m_model;
+	Model* m_model;
 	SDLView m_view;
 	SDLController* m_controller;
 

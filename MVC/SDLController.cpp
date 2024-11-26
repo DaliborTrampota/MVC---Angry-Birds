@@ -25,6 +25,21 @@ void SDLController::onKeyPress(SDL_Scancode key)
 		m_model->shoot();
 		break;
 
+	case SDL_SCANCODE_A:
+		m_model->aimUp();
+		break;
+
+	case SDL_SCANCODE_Y:
+		m_model->aimDown();
+		break;
+
+	case SDL_SCANCODE_F:
+		m_model->powerUp();
+		break;
+
+	case SDL_SCANCODE_D:
+		m_model->powerDown();
+		break;
 	}
 }
 

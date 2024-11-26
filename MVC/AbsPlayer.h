@@ -15,6 +15,8 @@ public:
 	virtual void moveDown() = 0;
 	virtual void aimUp() = 0;
 	virtual void aimDown() = 0;
+	virtual void powerUp() = 0;
+	virtual void powerDown() = 0;
 	virtual AbsMissile* shoot() = 0;
 };
 

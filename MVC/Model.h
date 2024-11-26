@@ -15,18 +15,21 @@ class Model
 {
 
 public:
-	Model() = default;
+	Model() = delete;
 	Model(Game* game);
+
+	void init();
 
 	void moveUp();
 	void moveDown();
 	void aimUp();
 	void aimDown();
+	void powerUp();
+	void powerDown();
 	void shoot();
 
 	AbsPlayer* getPlayer() const;
 	std::vector<GameObject*> getObjects() const;
-
 
 private:
 	Game* m_game;

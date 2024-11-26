@@ -6,12 +6,19 @@
 #include "PlayerA.h"
 #include "AbsMissile.h"
 
+#include "Configuration.h"
+
 Model::Model(Game* game) : 
-	m_game(game)
+	m_game(game),
+	m_player(nullptr)
 {
 	m_objectFactory = new GameObjectFactoryA(this);
-	m_player = m_objectFactory->createPlayer();
-	
+}
+
+void Model::init() 
+{
+	m_player = m_objectFactory->createPlayer({ PlayerX, m_game->getWindowRect().h / 2 });
+}
 
 void Model::moveUp()
 {
@@ -31,6 +38,16 @@ void Model::aimUp()
 void Model::aimDown()
 {
 	m_player->aimDown();
+}
+
+void Model::powerUp()
+{
+	m_player->powerUp();
+}
+
+void Model::powerDown()
+{
+	m_player->powerDown();
 }
 
 void Model::shoot()

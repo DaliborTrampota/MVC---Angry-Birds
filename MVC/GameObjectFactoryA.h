@@ -9,10 +9,12 @@ class Model;
 class GameObjectFactoryA : public IGameObjectFactory
 {
 public:
-	GameObjectFactoryA(Model* model) : m_model(model) {}
+	GameObjectFactoryA(Model* model) : m_model(model) {
+	
+	}
 
-	AbsPlayer* createPlayer() override;
-	AbsMissile* createMissile() override;
+	AbsPlayer* createPlayer(Vec2<int> pos) override;
+	AbsMissile* createMissile(float initAngle, float initVelocity) override;
 
 private:
 	Model* m_model;

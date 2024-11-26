@@ -1,12 +1,15 @@
 #include "Game.h"
 
+#include "SDLController.h"
 #include <chrono>
 
 Game::Game()
 {	
-	m_model = Model(this);
+	m_model = new Model(this);
 	m_view = SDLView(m_model);
 	m_controller = m_view.getController();
+
+	m_model->init();
 
 	Run();
 }
@@ -22,7 +25,7 @@ void Game::Run()
 
 		m_controller->pollEvents();
 		m_view.render();
-		m_model.Update(deltaTime);
+		m_model->Update(deltaTime);
 
 		prevTime = curTime;
 	}
