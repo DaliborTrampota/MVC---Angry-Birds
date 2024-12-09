@@ -6,14 +6,19 @@
 #include "SDL2/SDL.h"
 
 
-void SDLDrawer::visitPlayer(AbsPlayer* player)
-{
-	draw(player);
-}
+//void SDLDrawer::visitPlayer(AbsPlayer* player)
+//{
+//	draw(player);
+//}
+//
+//void SDLDrawer::visitMissile(AbsMissile* missile)
+//{
+//	draw(missile);
+//}
 
-void SDLDrawer::visitMissile(AbsMissile* missile)
+void SDLDrawer::visitObject(GameObject* obj)
 {
-	draw(missile);
+	draw(obj);
 }
 
 void SDLDrawer::drawBackground()

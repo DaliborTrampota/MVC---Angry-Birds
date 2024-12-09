@@ -5,13 +5,15 @@
 
 class LifetimeGameObject : public GameObject
 {
+	using Clock = std::chrono::steady_clock;
+
 public:
-	LifetimeGameObject(Vec2<int> pos, const char* texName);
+	LifetimeGameObject(Vec2<int> pos);
 
 	/* Returns time of the object in milliseconds */
 	long getAge() const;
 
 private:
-	std::chrono::time_point<std::chrono::system_clock> m_createdAt;
+	Clock::time_point m_createdAt;
 };
 

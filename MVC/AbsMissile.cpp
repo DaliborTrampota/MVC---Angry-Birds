@@ -3,7 +3,8 @@
 
 void AbsMissile::acceptVisitor(IVisitor* visitor)
 {
-	visitor->visitMissile(this);
+	//visitor->visitMissile(this);
+	visitor->visitObject(this);
 }
 
 float AbsMissile::getAngle() const

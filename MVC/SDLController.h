@@ -9,7 +9,7 @@
 class Model;
 
 // SDL2 Controller
-class SDLController // : public IController<SDL_Scancode>
+class SDLController// : public IController<SDL_Scancode>
 {
 public:
 	SDLController() = default;

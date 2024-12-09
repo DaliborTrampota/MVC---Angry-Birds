@@ -30,6 +30,9 @@
     <Filter Include="Source Files\AbstractFactory">
       <UniqueIdentifier>{13299be8-0f2a-4d16-a4f4-a4828d4c6b21}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Observer">
+      <UniqueIdentifier>{fe1d4a8a-9e7b-4aaa-a824-3ef564819b4a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -136,6 +139,12 @@
     </ClInclude>
     <ClInclude Include="LifetimeGameObject.h">
       <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="IObservable.h">
+      <Filter>Source Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="IObserver.h">
+      <Filter>Source Files\Observer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

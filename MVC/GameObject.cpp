@@ -1,12 +1,27 @@
 #include "GameObject.h"
 
-GameObject::GameObject(Vec2<int> pos, const char* textureName) : 
+GameObject::GameObject(Vec2<int> pos) : 
 	m_name("object"),
-	m_texName(textureName), 
+	m_texName(), 
 	m_pos(pos),
 	m_height(0),
 	m_width(0)
 {
+	m_sCount++;
+}
+
+GameObject::GameObject(Vec2<int> pos, const char* texName) :
+	m_name("object"),
+	m_texName(texName),
+	m_pos(pos),
+	m_height(0),
+	m_width(0)
+{
+}
+
+GameObject::~GameObject()
+{
+	m_sCount--;
 }
 
 void GameObject::move(Vec2<int> dir)
@@ -38,4 +53,14 @@ Vec2<int> GameObject::getPosition() const
 Vec2<int> GameObject::getDimensions() const
 {
 	return Vec2<int>{ m_width, m_height };
+}
+
+void GameObject::setName(const char* name)
+{
+	m_name = name;
+}
+
+void GameObject::setTexture(const char* name)
+{
+	m_texName = name;
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 
-//template <class Key>
+//template <class Key = int>
 //class IController {
 //public:
 //	virtual void onKeyPress(Key key) = 0;

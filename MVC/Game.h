@@ -12,6 +12,7 @@ public:
 	Game();
 
 	void Run();
+	void Exit();
 
 	Rect<int> getWindowRect() const;
 

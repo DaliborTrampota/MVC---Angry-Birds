@@ -9,7 +9,7 @@ class IGameObjectFactory;
 class PlayerA : public AbsPlayer
 {
 public:
-	PlayerA(Vec2<int> pos, const char* textureName);
+	PlayerA(Vec2<int> pos);
 	//using AbsPlayer::AbsPlayer;
 	//PlayerA(const char* name, const char* textureName) : AbsPlayer(name, textureName) {}
 

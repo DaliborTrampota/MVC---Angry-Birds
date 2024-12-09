@@ -2,5 +2,6 @@
 
 void AbsPlayer::acceptVisitor(IVisitor* visitor)
 {
-	visitor->visitPlayer(this);
+	//visitor->visitPlayer(this);
+	visitor->visitObject(this);
 }

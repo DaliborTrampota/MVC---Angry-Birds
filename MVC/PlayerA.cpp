@@ -4,8 +4,8 @@
 
 #include "Configuration.h"
 
-PlayerA::PlayerA(Vec2<int> pos, const char* textureName) :
-    AbsPlayer(pos, textureName),
+PlayerA::PlayerA(Vec2<int> pos) :
+    AbsPlayer(pos),
     m_angle(InitAngle),
     m_power(InitPower)
 {

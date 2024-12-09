@@ -17,8 +17,9 @@ class AbsMissile;
 class SDLDrawer : public IVisitor
 {
 public:
-	void visitPlayer(AbsPlayer* player) override;
-	void visitMissile(AbsMissile* missile) override;
+	//void visitPlayer(AbsPlayer* player) override;
+	//void visitMissile(AbsMissile* missile) override;
+	void visitObject(GameObject* obj) override;
 
 	void drawBackground();
 
@@ -37,5 +38,7 @@ private:
 	SDL_Renderer* m_renderer;
 
 	SDLResourceManager* m_resourceMgr;
+
+	friend class SDLView;
 };
 

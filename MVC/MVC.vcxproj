@@ -152,6 +152,8 @@
     <ClInclude Include="AbsPlayer.h" />
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="IController.h" />
+    <ClInclude Include="IObservable.h" />
+    <ClInclude Include="IObserver.h" />
     <ClInclude Include="IView.h" />
     <ClInclude Include="LifetimeGameObject.h" />
     <ClInclude Include="SDLController.h" />

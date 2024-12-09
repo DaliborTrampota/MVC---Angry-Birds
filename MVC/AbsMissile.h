@@ -6,8 +6,8 @@
 class AbsMissile : public LifetimeGameObject
 {
 public:
-	AbsMissile(Vec2<int> pos, const char* textureName, float angle, int velocity) :
-		LifetimeGameObject(pos, textureName),
+	AbsMissile(Vec2<int> pos, float angle, int velocity) :
+		LifetimeGameObject(pos),
 		m_angle(angle),
 		m_velocity(velocity)
 	{

@@ -40,6 +40,9 @@ void SDLController::onKeyPress(SDL_Scancode key)
 	case SDL_SCANCODE_D:
 		m_model->powerDown();
 		break;
+
+	case SDL_SCANCODE_ESCAPE:
+		m_exit = true;
 	}
 }
 
