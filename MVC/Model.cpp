@@ -27,11 +27,7 @@ Model::Model(Game* game) :
 	m_player(nullptr)
 {
 	m_objectFactory = new GameObjectFactoryA(this);
-}
-
-void Model::init() 
-{
-	m_player = m_objectFactory->createPlayer({ PlayerX, m_game->getWindowRect().h / 2 }); // m_renderer null if in ctor, fix
+	m_player = m_objectFactory->createPlayer({ PlayerX, WindowHeight / 2 });
 }
 
 void Model::moveUp()

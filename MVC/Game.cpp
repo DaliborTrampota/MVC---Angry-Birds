@@ -7,14 +7,11 @@
 #include "CareTaker.h"
 
 Game::Game()
-{	
-	m_view = SDLView();
-	auto model = new Model(this);
-	m_model = new GameModelProxy(model);
+{
+	m_model = new GameModelProxy(new Model(this));
+	m_view = SDLView(m_model);
 	m_controller = m_view.getController();
 
-	m_model->init();
-	m_view.setModel(m_model);
 	CareTaker::get()->setModel(m_model);
 
 	Run();

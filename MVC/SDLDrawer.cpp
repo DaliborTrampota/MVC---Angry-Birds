@@ -1,5 +1,7 @@
 #include "SDLDrawer.h"
 
+#include "Configuration.h"
+
 #include "GameObject.h"
 #include "AbsPlayer.h"
 
@@ -47,7 +49,7 @@ void SDLDrawer::draw(const char* texName, SDL_Rect* rect)
 void SDLDrawer::initSDL()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
-	m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 400, SDL_WINDOW_SHOWN);
+	m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WindowWidth, WindowHeight, SDL_WINDOW_SHOWN);
 	m_renderer = SDL_CreateRenderer(m_window, -1, 0);
 
 	m_resourceMgr = new SDLResourceManager(m_renderer);
