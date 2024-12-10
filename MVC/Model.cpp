@@ -6,9 +6,21 @@
 #include "PlayerA.h"
 #include "AbsMissile.h"
 
+#include "SimpleMovingStrategy.h"
+#include "RealisticMovingStrategy.h"
+#include "RandomMovingStrategy.h"
+
 #include "Configuration.h"
 
-Model::Model(Game* game) : 
+
+static std::vector<IMovingStrategy*> s_movingStrategies = {
+	new SimpleMovingStrategy(),
+	new RealistingMovingStrategy(),
+	new RandomMovingStrategy(),
+};
+
+
+Model::Model(Game* game) :
 	m_game(game),
 	m_player(nullptr)
 {
@@ -58,8 +70,20 @@ void Model::powerDown()
 
 void Model::shoot()
 {
-	m_missiles.push_back(m_player->shoot());
+	auto shotMissiles = m_player->shoot();
+	m_missiles.insert(m_missiles.end(), shotMissiles.begin(), shotMissiles.end());
 	notifyObservers();
+}
+
+void Model::toggleMovingStrategy()
+{
+	m_movingStrategyIndex = (m_movingStrategyIndex + 1) % s_movingStrategies.size();
+
+}
+
+void Model::toggleShootingMode()
+{
+	m_player->toggleShootingMode();
 }
 
 void Model::Update(float dt)
@@ -70,10 +94,15 @@ void Model::Update(float dt)
 void Model::moveMissiles()
 {
 	for (auto& m : m_missiles) {
-		m->move({ 1, 0 });
+		m->move();
 	}
 }
 
+
+IMovingStrategy* Model::getMovingStrategy() const
+{
+	return s_movingStrategies[m_movingStrategyIndex];
+}
 
 AbsPlayer* Model::getPlayer() const
 {

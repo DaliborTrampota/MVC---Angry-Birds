@@ -133,7 +133,10 @@
   <ItemGroup>
     <ClCompile Include="AbsMissile.cpp" />
     <ClCompile Include="AbsPlayer.cpp" />
+    <ClCompile Include="DoubleShootingMode.cpp" />
     <ClCompile Include="LifetimeGameObject.cpp" />
+    <ClCompile Include="RandomMovingStrategy.cpp" />
+    <ClCompile Include="RealisticMovingStrategy.cpp" />
     <ClCompile Include="SDLController.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -146,16 +149,23 @@
     <ClCompile Include="SDLDrawer.cpp" />
     <ClCompile Include="SDLResourceManager.cpp" />
     <ClCompile Include="SDLView.cpp" />
+    <ClCompile Include="SimpleMovingStrategy.cpp" />
+    <ClCompile Include="SingleShootingMode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbsMissile.h" />
     <ClInclude Include="AbsPlayer.h" />
     <ClInclude Include="Configuration.h" />
+    <ClInclude Include="DoubleShootingMode.h" />
     <ClInclude Include="IController.h" />
+    <ClInclude Include="IMovingStrategy.h" />
     <ClInclude Include="IObservable.h" />
     <ClInclude Include="IObserver.h" />
+    <ClInclude Include="IShootingMode.h" />
     <ClInclude Include="IView.h" />
     <ClInclude Include="LifetimeGameObject.h" />
+    <ClInclude Include="RandomMovingStrategy.h" />
+    <ClInclude Include="RealisticMovingStrategy.h" />
     <ClInclude Include="SDLController.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
@@ -170,6 +180,8 @@
     <ClInclude Include="SDLDrawer.h" />
     <ClInclude Include="SDLResourceManager.h" />
     <ClInclude Include="SDLView.h" />
+    <ClInclude Include="SimpleMovingStrategy.h" />
+    <ClInclude Include="SingleShootingMode.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\images\back.jpg" />

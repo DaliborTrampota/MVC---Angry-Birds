@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IGameObjectFactory.h"
+#include "IMovingStrategy.h"
 
 class AbsPlayer;
 class AbsMissile;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include "AbsPlayer.h"
 
 class AbsMissile;
@@ -19,7 +20,11 @@ public:
 	void aimDown() override;
 	void powerUp() override;
 	void powerDown() override;
-	AbsMissile* shoot() override;
+
+	std::vector<AbsMissile*> shoot() override;
+	void primitiveShoot() override;
+
+	void toggleShootingMode() override;
 
 	void setFactory(IGameObjectFactory* factory);
 
@@ -27,5 +32,7 @@ private:
 	IGameObjectFactory* m_factory;
 	float m_angle;
 	int m_power;
+
+	std::vector<AbsMissile*> m_shootingBatch;
 };
 

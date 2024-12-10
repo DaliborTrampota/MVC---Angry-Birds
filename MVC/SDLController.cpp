@@ -41,6 +41,14 @@ void SDLController::onKeyPress(SDL_Scancode key)
 		m_model->powerDown();
 		break;
 
+	case SDL_SCANCODE_M:
+		m_model->toggleMovingStrategy();
+		break;
+
+	case SDL_SCANCODE_N:
+		m_model->toggleShootingMode();
+		break;
+
 	case SDL_SCANCODE_ESCAPE:
 		m_exit = true;
 	}

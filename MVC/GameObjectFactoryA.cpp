@@ -14,7 +14,7 @@ AbsPlayer* GameObjectFactoryA::createPlayer(Vec2<int> pos)
 
 AbsMissile* GameObjectFactoryA::createMissile(float initAngle, float initVelocity)
 {
-    auto missile = new MissileA(m_model->getPlayer()->getPosition(), initAngle, initVelocity);
+    auto missile = new MissileA(m_model->getPlayer()->getPosition(), initAngle, initVelocity, m_model->getMovingStrategy());
     missile->setTexture("missile.png");
     return missile;
 }

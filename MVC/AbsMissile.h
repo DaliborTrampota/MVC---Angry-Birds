@@ -17,6 +17,9 @@ public:
 	float getAngle() const;
 	int getVelocity() const;
 
+	using GameObject::move;
+	virtual void move() = 0;
+
 	static inline unsigned int s_ID = 0;
 	static inline const char* s_getName(const char* name);
 

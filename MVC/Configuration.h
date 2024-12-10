@@ -1,12 +1,15 @@
 #pragma once
 
-#define Gravity = 9.8
+#define Gravity 9.8
+#define MagicTimeConst 100
 
 #define PlayerX 50
-#define PlayerMoveSpeed 2
+#define PlayerMoveSpeed 5
 
 #define InitAngle 0.0f
 #define InitPower 10
 #define AngleStep 3.14159f / 18.f
 #define PowerStep 1
+#define MaxPower 50
+#define MinPower 1
 

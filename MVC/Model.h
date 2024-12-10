@@ -2,6 +2,7 @@
 
 #include "Math.h"
 #include "IObservable.h"
+#include "IMovingStrategy.h"
 
 #include <functional>
 #include <vector>
@@ -31,6 +32,10 @@ public:
 	void shoot();
 
 	void destroyMissiles(){};
+	void toggleMovingStrategy();
+	void toggleShootingMode();
+
+	IMovingStrategy* getMovingStrategy() const;
 
 	AbsPlayer* getPlayer() const;
 	std::vector<GameObject*> getObjects() const;
@@ -47,6 +52,7 @@ private:
 
 	AbsPlayer* m_player;
 	std::vector<AbsMissile*> m_missiles;
+	int m_movingStrategyIndex = 0;
 
 	void Update(float dt);
 	void moveMissiles();

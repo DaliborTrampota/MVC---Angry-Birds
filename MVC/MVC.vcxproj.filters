@@ -33,6 +33,12 @@
     <Filter Include="Source Files\Observer">
       <UniqueIdentifier>{fe1d4a8a-9e7b-4aaa-a824-3ef564819b4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Strategy">
+      <UniqueIdentifier>{f11974ac-1b41-4df3-bf6f-1e8aa14babe9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\State">
+      <UniqueIdentifier>{4e1aa121-2bf7-49e1-ab2a-ac2d71630c32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -79,6 +85,21 @@
     </ClCompile>
     <ClCompile Include="LifetimeGameObject.cpp">
       <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomMovingStrategy.cpp">
+      <Filter>Source Files\Strategy</Filter>
+    </ClCompile>
+    <ClCompile Include="RealisticMovingStrategy.cpp">
+      <Filter>Source Files\Strategy</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleMovingStrategy.cpp">
+      <Filter>Source Files\Strategy</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleShootingMode.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="DoubleShootingMode.cpp">
+      <Filter>Source Files\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +166,27 @@
     </ClInclude>
     <ClInclude Include="IObserver.h">
       <Filter>Source Files\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="IMovingStrategy.h">
+      <Filter>Source Files\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomMovingStrategy.h">
+      <Filter>Source Files\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="RealisticMovingStrategy.h">
+      <Filter>Source Files\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleMovingStrategy.h">
+      <Filter>Source Files\Strategy</Filter>
+    </ClInclude>
+    <ClInclude Include="IShootingMode.h">
+      <Filter>Source Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleShootingMode.h">
+      <Filter>Source Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="DoubleShootingMode.h">
+      <Filter>Source Files\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

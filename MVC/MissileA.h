@@ -1,11 +1,16 @@
 #pragma once
 
+#include "IMovingStrategy.h"
 #include "AbsMissile.h"
 
 class MissileA : public AbsMissile
 {
 public:
-	using AbsMissile::AbsMissile;
-	//MissileA(const char* name, const char* textureName) : AbsMissile(name, textureName) {}
+	MissileA(Vec2<int> pos, float angle, int velocity, IMovingStrategy* strategy);
+
+	void move() override;
+
+private:
+	IMovingStrategy* m_movingStrategy;
 };
 
