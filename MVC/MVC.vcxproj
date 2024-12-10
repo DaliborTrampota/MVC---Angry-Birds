@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="AbsMissile.cpp" />
     <ClCompile Include="AbsPlayer.cpp" />
+    <ClCompile Include="CareTaker.cpp" />
     <ClCompile Include="DoubleShootingMode.cpp" />
     <ClCompile Include="LifetimeGameObject.cpp" />
     <ClCompile Include="RandomMovingStrategy.cpp" />
@@ -155,15 +156,21 @@
   <ItemGroup>
     <ClInclude Include="AbsMissile.h" />
     <ClInclude Include="AbsPlayer.h" />
+    <ClInclude Include="AbstractGameCommand.h" />
+    <ClInclude Include="CareTaker.h" />
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="DoubleShootingMode.h" />
+    <ClInclude Include="GameModelProxy.h" />
     <ClInclude Include="IController.h" />
+    <ClInclude Include="IModel.h" />
     <ClInclude Include="IMovingStrategy.h" />
     <ClInclude Include="IObservable.h" />
     <ClInclude Include="IObserver.h" />
     <ClInclude Include="IShootingMode.h" />
     <ClInclude Include="IView.h" />
     <ClInclude Include="LifetimeGameObject.h" />
+    <ClInclude Include="MovePlrDownCmd.h" />
+    <ClInclude Include="MovePlrUpCmd.h" />
     <ClInclude Include="RandomMovingStrategy.h" />
     <ClInclude Include="RealisticMovingStrategy.h" />
     <ClInclude Include="SDLController.h" />

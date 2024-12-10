@@ -6,20 +6,20 @@
 #undef main
 
 
-class Model;
+class IModel;
 
 // SDL2 Controller
 class SDLController// : public IController<SDL_Scancode>
 {
 public:
 	SDLController() = default;
-	SDLController(Model* model);
+	SDLController(IModel* model);
 
 
 	void onKeyPress(SDL_Scancode key);
 
 private:
-	Model* m_model;
+	IModel* m_model;
 	bool m_exit = false;
 
 

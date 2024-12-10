@@ -2,23 +2,26 @@
 
 #include "Model.h"
 #include "Math.h"
-
-
 #include "SDL2/SDL.h"
 
-SDLController::SDLController(Model* model) : m_model(model)
+#include "MovePlrDownCmd.h"
+#include "MovePlrUpCmd.h"
+
+#include "CareTaker.h"
+
+SDLController::SDLController(IModel* model) : m_model(model)
 {
 }
 
 void SDLController::onKeyPress(SDL_Scancode key)
 {
 	switch (key) {
-	case SDL_SCANCODE_W:
-		m_model->moveUp();
+	case SDL_SCANCODE_UP:
+		m_model->registerCommand(new MovePlrUpCmd(m_model));
 		break;
 
-	case SDL_SCANCODE_S:
-		m_model->moveDown();
+	case SDL_SCANCODE_DOWN:
+		m_model->registerCommand(new MovePlrDownCmd(m_model));
 		break;
 
 	case SDL_SCANCODE_SPACE:
@@ -48,6 +51,19 @@ void SDLController::onKeyPress(SDL_Scancode key)
 	case SDL_SCANCODE_N:
 		m_model->toggleShootingMode();
 		break;
+
+	case SDL_SCANCODE_S:
+		CareTaker::get()->createMemento();
+		break;
+
+	case SDL_SCANCODE_R:
+		CareTaker::get()->restoreMemento();
+		break;
+
+	case SDL_SCANCODE_Z:
+		m_model->undoLastCommand();
+		break;
+
 
 	case SDL_SCANCODE_ESCAPE:
 		m_exit = true;

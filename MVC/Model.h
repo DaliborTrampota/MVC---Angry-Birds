@@ -1,11 +1,13 @@
 #pragma once
 
 #include "Math.h"
-#include "IObservable.h"
+#include "IModel.h"
 #include "IMovingStrategy.h"
 
 #include <functional>
 #include <vector>
+#include <queue>
+#include <stack>
 #include <unordered_set>
 
 class Game;
@@ -13,8 +15,9 @@ class GameObject;
 class AbsPlayer;
 class AbsMissile;
 class IGameObjectFactory;
+class AbstractGameCommand;
 
-class Model : public IObservable
+class Model : public IModel
 {
 
 public:
@@ -22,28 +25,33 @@ public:
 	Model(Game* game);
 
 	void init();
-
-	void moveUp();
-	void moveDown();
-	void aimUp();
-	void aimDown();
-	void powerUp();
-	void powerDown();
-	void shoot();
+	void moveUp() override;
+	void moveDown() override;
+	void aimUp() override;
+	void aimDown() override;
+	void powerUp() override;
+	void powerDown() override;
+	void shoot() override;
 
 	void destroyMissiles(){};
-	void toggleMovingStrategy();
-	void toggleShootingMode();
+	void toggleMovingStrategy() override;
+	void toggleShootingMode() override;
 
-	IMovingStrategy* getMovingStrategy() const;
 
-	AbsPlayer* getPlayer() const;
-	std::vector<GameObject*> getObjects() const;
-	std::vector<AbsMissile*> getMissiles() const;
+	AbsPlayer* getPlayer() const override;
+	std::vector<GameObject*> getObjects() const override;
+	IMovingStrategy* getMovingStrategy() const override;
+
+	Memento* createMemento() override;
+	void setMemento(Memento* memento) override;
+	void registerCommand(AbstractGameCommand* cmd) override;
+	void undoLastCommand() override;
 
 	void registerObserver(IObserver* observer) override;
 	void unregisterObserver(IObserver* observer) override;
 	void notifyObservers() override;
+
+	void update(float dt);
 
 private:
 	Game* m_game;
@@ -54,8 +62,11 @@ private:
 	std::vector<AbsMissile*> m_missiles;
 	int m_movingStrategyIndex = 0;
 
-	void Update(float dt);
 	void moveMissiles();
+	void executeCommands();
+
+	std::queue<AbstractGameCommand*> m_unexecutedCommands;
+	std::stack<AbstractGameCommand*> m_executedCommands;
 
 	friend class Game;
 };

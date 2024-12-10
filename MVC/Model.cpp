@@ -10,6 +10,8 @@
 #include "RealisticMovingStrategy.h"
 #include "RandomMovingStrategy.h"
 
+#include "AbstractGameCommand.h"
+
 #include "Configuration.h"
 
 
@@ -86,15 +88,51 @@ void Model::toggleShootingMode()
 	m_player->toggleShootingMode();
 }
 
-void Model::Update(float dt)
+void Model::update(float dt)
 {
 	moveMissiles();
+	executeCommands();	
 }
 
 void Model::moveMissiles()
 {
 	for (auto& m : m_missiles) {
 		m->move();
+	}
+}
+
+void Model::executeCommands()
+{
+	while (!m_unexecutedCommands.empty()) {
+		auto cmd = m_unexecutedCommands.front();
+		m_unexecutedCommands.pop();
+		cmd->doExecute();
+		m_executedCommands.push(cmd);
+	}
+}
+
+IModel::Memento* Model::createMemento()
+{
+	return new Memento{ getPlayer()->getPosition() };
+}
+
+void Model::setMemento(Memento* memento)
+{
+	auto plr = getPlayer();
+	plr->move(memento->plrPos - plr->getPosition());
+}
+
+void Model::registerCommand(AbstractGameCommand* cmd)
+{
+	m_unexecutedCommands.push(cmd);
+}
+
+void Model::undoLastCommand()
+{
+	if (!m_executedCommands.empty()) {
+		m_executedCommands.top()->undoExecute();
+		m_executedCommands.pop();
+		notifyObservers();
 	}
 }
 
@@ -114,11 +152,6 @@ std::vector<GameObject*> Model::getObjects() const
 	auto objects = std::vector<GameObject*>{ m_player };
 	objects.insert(objects.end(), m_missiles.begin(), m_missiles.end());
 	return objects;
-}
-
-std::vector<AbsMissile*> Model::getMissiles() const
-{
-	return m_missiles;
 }
 
 void Model::registerObserver(IObserver* observer)

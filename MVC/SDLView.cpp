@@ -1,11 +1,12 @@
 #include "SDLView.h"
 
-#include "Model.h"
+#include "IModel.h"
 #include "GameObject.h"
 
 #include "SDL2/SDL.h"
 
-SDLView::SDLView(Model* model) : m_model(model)
+
+SDLView::SDLView(IModel* model) : m_model(model)
 {
 	m_gameDrawer.initSDL();
 	m_cont = SDLController(m_model);
@@ -25,4 +26,9 @@ Rect<int> SDLView::getWindowRect() const
 {
 	SDL_Rect rect = m_gameDrawer.getWindowRect();
 	return { rect.x, rect.y, rect.w, rect.h };
+}
+
+SDLController* SDLView::getController()
+{
+	return &m_cont;
 }

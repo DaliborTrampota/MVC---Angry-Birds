@@ -1,6 +1,6 @@
 #include "GameObjectFactoryA.h"
 
-#include "Model.h"
+#include "IModel.h"
 #include "PlayerA.h"
 #include "MissileA.h"
 

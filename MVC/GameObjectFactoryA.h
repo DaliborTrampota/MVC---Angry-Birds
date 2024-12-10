@@ -5,12 +5,12 @@
 
 class AbsPlayer;
 class AbsMissile;
-class Model;
+class IModel;
 
 class GameObjectFactoryA : public IGameObjectFactory
 {
 public:
-	GameObjectFactoryA(Model* model) : m_model(model) {
+	GameObjectFactoryA(IModel* model) : m_model(model) {
 	
 	}
 
@@ -18,6 +18,6 @@ public:
 	AbsMissile* createMissile(float initAngle, float initVelocity) override;
 
 private:
-	Model* m_model;
+	IModel* m_model;
 };
 

@@ -7,7 +7,7 @@
 #include <unordered_map>
 #include <string>
 
-class Model;
+class IModel;
 class GameObject;
 struct SDL_Rect;
 
@@ -17,17 +17,15 @@ class SDLView // : public IView
 {
 public:
 	SDLView() = default;
-	SDLView(Model* model);
+	SDLView(IModel* model);
 
 	void render();
 	Rect<int> getWindowRect() const;
 
-	SDLController* getController() {
-		return &m_cont;
-	}
+	SDLController* getController();
 
 private:
-	Model* m_model;
+	IModel* m_model;
 	SDLController m_cont;
 	SDLDrawer m_gameDrawer;
 };

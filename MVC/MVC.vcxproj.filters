@@ -39,6 +39,12 @@
     <Filter Include="Source Files\State">
       <UniqueIdentifier>{4e1aa121-2bf7-49e1-ab2a-ac2d71630c32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Command">
+      <UniqueIdentifier>{8548b568-faeb-4e25-bf33-0758ce334946}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Memento">
+      <UniqueIdentifier>{c5307bc1-fbd2-478d-8b67-420722e5fa80}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -80,9 +86,6 @@
     <ClCompile Include="GameObjectFactoryA.cpp">
       <Filter>Source Files\AbstractFactory</Filter>
     </ClCompile>
-    <ClCompile Include="SDLResourceManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="LifetimeGameObject.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
@@ -100,6 +103,12 @@
     </ClCompile>
     <ClCompile Include="DoubleShootingMode.cpp">
       <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="CareTaker.cpp">
+      <Filter>Source Files\Memento</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLResourceManager.cpp">
+      <Filter>Source Files\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,7 +157,6 @@
     <ClInclude Include="GameObjectFactoryA.h">
       <Filter>Source Files\AbstractFactory</Filter>
     </ClInclude>
-    <ClInclude Include="SDLResourceManager.h" />
     <ClInclude Include="Configuration.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -187,6 +195,27 @@
     </ClInclude>
     <ClInclude Include="DoubleShootingMode.h">
       <Filter>Source Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="IModel.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractGameCommand.h">
+      <Filter>Source Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="GameModelProxy.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="MovePlrDownCmd.h">
+      <Filter>Source Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="MovePlrUpCmd.h">
+      <Filter>Source Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="CareTaker.h">
+      <Filter>Source Files\Memento</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLResourceManager.h">
+      <Filter>Source Files\View</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
