@@ -4,7 +4,7 @@
 
 class AbstractGameCommand {
 public:
-	AbstractGameCommand(IModel* model) : m_model(model) {};
+	AbstractGameCommand(IModel* model) : m_model(model), m_memento(nullptr) {};
 
 	AbstractGameCommand* doExecute() {
 		m_memento = m_model->createMemento();

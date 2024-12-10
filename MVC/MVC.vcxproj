@@ -189,6 +189,7 @@
     <ClInclude Include="SDLView.h" />
     <ClInclude Include="SimpleMovingStrategy.h" />
     <ClInclude Include="SingleShootingMode.h" />
+    <ClInclude Include="UniversalCmd.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\images\back.jpg" />

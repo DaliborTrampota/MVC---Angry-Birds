@@ -24,7 +24,6 @@ public:
 	Model() = delete;
 	Model(Game* game);
 
-	void init();
 	void moveUp() override;
 	void moveDown() override;
 	void aimUp() override;

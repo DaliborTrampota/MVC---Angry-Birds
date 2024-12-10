@@ -6,9 +6,7 @@
 #include "Configuration.h"
 
 PlayerA::PlayerA(Vec2<int> pos) :
-    AbsPlayer(pos),
-    m_angle(InitAngle),
-    m_power(InitPower),
+    AbsPlayer(pos, InitAngle, InitPower),
     m_factory(nullptr)
 {
     m_shootingMode = SINGLE_SHOOTING_MODE;
@@ -42,6 +40,16 @@ void PlayerA::powerUp()
 void PlayerA::powerDown()
 {
     m_power = std::max(m_power - PowerStep, MinPower);
+}
+
+void PlayerA::setAngle(float angle)
+{
+    m_angle = angle;
+}
+
+void PlayerA::setPower(int power)
+{
+    m_power = power;
 }
 
 std::vector<AbsMissile*> PlayerA::shoot()

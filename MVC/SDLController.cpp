@@ -6,6 +6,7 @@
 
 #include "MovePlrDownCmd.h"
 #include "MovePlrUpCmd.h"
+#include "UniversalCmd.h"
 
 #include "CareTaker.h"
 
@@ -25,23 +26,23 @@ void SDLController::onKeyPress(SDL_Scancode key)
 		break;
 
 	case SDL_SCANCODE_SPACE:
-		m_model->shoot();
+		m_model->registerCommand(new UniversalCmd(m_model, std::bind(&IModel::shoot, m_model)));
 		break;
 
 	case SDL_SCANCODE_A:
-		m_model->aimUp();
+		m_model->registerCommand(new UniversalCmd(m_model, std::bind(&IModel::aimUp, m_model)));
 		break;
 
 	case SDL_SCANCODE_Y:
-		m_model->aimDown();
+		m_model->registerCommand(new UniversalCmd(m_model, std::bind(&IModel::aimDown, m_model)));
 		break;
 
 	case SDL_SCANCODE_F:
-		m_model->powerUp();
+		m_model->registerCommand(new UniversalCmd(m_model, std::bind(&IModel::powerUp, m_model)));
 		break;
 
 	case SDL_SCANCODE_D:
-		m_model->powerDown();
+		m_model->registerCommand(new UniversalCmd(m_model, std::bind(&IModel::powerDown, m_model)));
 		break;
 
 	case SDL_SCANCODE_M:

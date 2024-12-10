@@ -12,8 +12,7 @@ public:
 	static IShootingMode* SINGLE_SHOOTING_MODE;
 	static IShootingMode* DOUBLE_SHOOTING_MODE;
 
-
-	using GameObject::GameObject;
+	AbsPlayer(Vec2<int> pos, float initAngle, int initPower);
 	//AbsPlayer(const char* name, const char* textureName) : GameObject(name, textureName) {}
 
 	void acceptVisitor(IVisitor* visitor) override;
@@ -30,8 +29,16 @@ public:
 
 	virtual void toggleShootingMode() = 0;
 
+	float getAngle() const;
+	int getPower() const;
+
+	virtual void setAngle(float angle) = 0;
+	virtual void setPower(int power) = 0;
+
 protected:
-	IShootingMode* m_shootingMode;
+	IShootingMode* m_shootingMode = nullptr;
+	float m_angle;
+	int m_power;
 
 
 };

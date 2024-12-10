@@ -21,6 +21,9 @@ public:
 	void powerUp() override;
 	void powerDown() override;
 
+	void setAngle(float angle) override;
+	void setPower(int power) override;
+
 	std::vector<AbsMissile*> shoot() override;
 	void primitiveShoot() override;
 
@@ -30,9 +33,6 @@ public:
 
 private:
 	IGameObjectFactory* m_factory;
-	float m_angle;
-	int m_power;
-
 	std::vector<AbsMissile*> m_shootingBatch;
 };
 

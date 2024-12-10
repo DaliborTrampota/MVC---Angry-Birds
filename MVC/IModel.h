@@ -36,7 +36,9 @@ public:
 
 
 	struct Memento {
-		Vec2<int> plrPos;
+		Vec2<int> position;
+		float angle;
+		int velocity;
 	};
 
 	virtual Memento* createMemento() = 0;

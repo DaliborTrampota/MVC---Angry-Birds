@@ -109,13 +109,20 @@ void Model::executeCommands()
 
 IModel::Memento* Model::createMemento()
 {
-	return new Memento{ getPlayer()->getPosition() };
+	auto plr = getPlayer();
+	return new Memento{ 
+		plr->getPosition(),
+		plr->getAngle(),
+		plr->getPower()
+	};
 }
 
 void Model::setMemento(Memento* memento)
 {
 	auto plr = getPlayer();
-	plr->move(memento->plrPos - plr->getPosition());
+	plr->move(memento->position - plr->getPosition());
+	plr->setAngle(memento->angle);
+	plr->setPower(memento->velocity);
 }
 
 void Model::registerCommand(AbstractGameCommand* cmd)

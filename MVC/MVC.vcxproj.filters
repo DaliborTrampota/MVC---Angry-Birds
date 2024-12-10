@@ -217,6 +217,9 @@
     <ClInclude Include="SDLResourceManager.h">
       <Filter>Source Files\View</Filter>
     </ClInclude>
+    <ClInclude Include="UniversalCmd.h">
+      <Filter>Source Files\Command</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\images\back.jpg">
