@@ -18,7 +18,7 @@ public:
 	int getVelocity() const;
 
 	using GameObject::move;
-	virtual void move() = 0;
+	virtual void move(float dt) = 0;
 
 	static inline unsigned int s_ID = 0;
 	static inline const char* s_getName(const char* name);

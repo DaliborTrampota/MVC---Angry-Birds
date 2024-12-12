@@ -31,7 +31,7 @@ public:
 	void powerDown() override;
 	void shoot() override;
 
-	void destroyMissiles(){};
+	void destroyMissiles();
 	void toggleMovingStrategy() override;
 	void toggleShootingMode() override;
 
@@ -62,7 +62,7 @@ protected:
 	std::vector<AbsMissile*> m_missiles;
 	int m_movingStrategyIndex = 0;
 
-	void moveMissiles();
+	void moveMissiles(float dt);
 	void executeCommands();
 
 	std::queue<AbstractGameCommand*> m_unexecutedCommands;

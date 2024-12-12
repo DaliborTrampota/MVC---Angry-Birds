@@ -6,7 +6,7 @@ MissileA::MissileA(Vec2<float> pos, float angle, int velocity, IMovingStrategy* 
 {
 }
 
-void MissileA::move()
+void MissileA::move(float dt)
 {
 	m_movingStrategy->updatePosition(this);
 }

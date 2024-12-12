@@ -1,5 +1,7 @@
 #include "Model.h"
 
+#include <algorithm>
+
 #include "GameObjectFactoryA.h"
 #include "Game.h"
 #include "GameObject.h"
@@ -73,10 +75,22 @@ void Model::shoot()
 	notifyObservers();
 }
 
+void Model::destroyMissiles()
+{
+	auto newEnd = std::remove_if(m_missiles.begin(), m_missiles.end(), [&](AbsMissile* missile) {
+		auto pos = missile->getPosition();
+		if (pos.x > m_windowSize.w || pos.x < 0 || pos.y > m_windowSize.h || pos.y < 0) {
+			delete missile;
+			return true;
+		}
+		return false;
+		});
+	m_missiles.erase(newEnd, m_missiles.end());
+}
+
 void Model::toggleMovingStrategy()
 {
 	m_movingStrategyIndex = (m_movingStrategyIndex + 1) % s_movingStrategies.size();
-
 }
 
 void Model::toggleShootingMode()
@@ -86,20 +100,22 @@ void Model::toggleShootingMode()
 
 void Model::update(float dt)
 {
-	moveMissiles();
+	moveMissiles(dt);
 	executeCommands();	
 }
 
-void Model::moveMissiles()
 void Model::setWindowSize(Rect<int> dims)
 {
 	m_windowSize = dims;
 }
 
+void Model::moveMissiles(float dt)
 {
 	for (auto& m : m_missiles) {
 		m->move();
 	}
+	destroyMissiles();
+	notifyObservers();
 }
 
 void Model::executeCommands()
