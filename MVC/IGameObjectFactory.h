@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Math.h"
+#include "MyMath.h"
 
 class AbsPlayer;
 class AbsMissile;

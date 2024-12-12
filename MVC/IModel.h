@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Math.h"
+#include "MyMath.h"
 #include "IObservable.h"
 #include "IMovingStrategy.h"
 
@@ -36,7 +36,7 @@ public:
 
 
 	struct Memento {
-		Vec2<int> position;
+		Vec2<float> position;
 		float angle;
 		int velocity;
 	};

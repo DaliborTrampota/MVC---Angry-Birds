@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Math.h"
+#include "MyMath.h"
 #include "IModel.h"
 #include "IMovingStrategy.h"
 

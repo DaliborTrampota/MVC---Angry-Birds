@@ -2,7 +2,7 @@
 
 #include "SDLView.h"
 #include "IModel.h"
-#include "Math.h"
+#include "MyMath.h"
 
 class SDLController;
 

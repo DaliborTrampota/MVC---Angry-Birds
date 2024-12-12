@@ -1,7 +1,7 @@
 #include "SDLController.h"
 
 #include "Model.h"
-#include "Math.h"
+#include "MyMath.h"
 #include "SDL2/SDL.h"
 
 #include "MovePlrDownCmd.h"

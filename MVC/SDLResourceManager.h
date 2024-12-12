@@ -1,7 +1,7 @@
 #pragma once
 
 #include <unordered_map>
-#include "Math.h"
+#include "MyMath.h"
 
 struct SDL_Texture;
 struct SDL_Renderer;
