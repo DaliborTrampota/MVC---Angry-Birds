@@ -12,7 +12,7 @@ class RandomMovingStrategy : public IMovingStrategy {
 public:
 	RandomMovingStrategy();
 
-	void updatePosition(AbsMissile* missile) override;
+	void updatePosition(AbsMissile* missile, float dt) override;
 
 
 private:

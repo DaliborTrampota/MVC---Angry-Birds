@@ -112,7 +112,7 @@ void Model::setWindowSize(Rect<int> dims)
 void Model::moveMissiles(float dt)
 {
 	for (auto& m : m_missiles) {
-		m->move();
+		m->move(dt);
 	}
 	destroyMissiles();
 	notifyObservers();

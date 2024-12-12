@@ -4,7 +4,7 @@
 #include "AbsMissile.h"
 
 
-void RealistingMovingStrategy::updatePosition(AbsMissile* missile)
+void RealistingMovingStrategy::updatePosition(AbsMissile* missile, float dt)
 {
 	long time = missile->getAge() / MagicTimeConst;
 

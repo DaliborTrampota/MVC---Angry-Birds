@@ -9,5 +9,5 @@ class RealistingMovingStrategy : public IMovingStrategy {
 public:
 	RealistingMovingStrategy() = default;
 
-	void updatePosition(AbsMissile* missile) override;
+	void updatePosition(AbsMissile* missile, float dt) override;
 };

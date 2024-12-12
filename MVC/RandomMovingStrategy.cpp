@@ -10,7 +10,7 @@ RandomMovingStrategy::RandomMovingStrategy()
 {
 }
 
-void RandomMovingStrategy::updatePosition(AbsMissile* missile)
+void RandomMovingStrategy::updatePosition(AbsMissile* missile, float dt)
 {
 	missile->move({ 1.f, (float)getDir() });
 }
