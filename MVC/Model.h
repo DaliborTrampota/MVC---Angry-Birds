@@ -21,8 +21,7 @@ class Model : public IModel
 {
 
 public:
-	Model() = delete;
-	Model(Game* game);
+	Model();
 
 	void moveUp() override;
 	void moveDown() override;
@@ -52,7 +51,9 @@ public:
 
 	void update(float dt);
 
-private:
+	void setWindowSize(Rect<int> dims);
+
+protected:
 	Game* m_game;
 	IGameObjectFactory* m_objectFactory;
 	std::unordered_set<IObserver*> m_observers;
@@ -67,6 +68,6 @@ private:
 	std::queue<AbstractGameCommand*> m_unexecutedCommands;
 	std::stack<AbstractGameCommand*> m_executedCommands;
 
-	friend class Game;
+	Rect<int> m_windowSize;
 };
 

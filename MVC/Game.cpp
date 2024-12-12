@@ -8,7 +8,7 @@
 
 Game::Game()
 {
-	m_model = new GameModelProxy(new Model(this));
+	m_model = new GameModelProxy(new Model());
 	m_view = SDLView(m_model);
 	m_controller = m_view.getController();
 
@@ -33,9 +33,3 @@ void Game::Run()
 		prevTime = curTime;
 	}
 }
-
-Rect<int> Game::getWindowRect() const
-{
-	return m_view.getWindowRect();
-}
-

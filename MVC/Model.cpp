@@ -22,9 +22,9 @@ static std::vector<IMovingStrategy*> s_movingStrategies = {
 };
 
 
-Model::Model(Game* game) :
-	m_game(game),
-	m_player(nullptr)
+Model::Model() :
+	m_player(nullptr),
+	m_windowSize({ 0, 0, WindowWidth, WindowHeight })
 {
 	m_objectFactory = new GameObjectFactoryA(this);
 	m_player = m_objectFactory->createPlayer({ PlayerX, WindowHeight / 2 });
@@ -91,6 +91,11 @@ void Model::update(float dt)
 }
 
 void Model::moveMissiles()
+void Model::setWindowSize(Rect<int> dims)
+{
+	m_windowSize = dims;
+}
+
 {
 	for (auto& m : m_missiles) {
 		m->move();
