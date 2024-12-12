@@ -47,13 +47,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SDLController.cpp">
@@ -110,6 +104,15 @@
     <ClCompile Include="SDLResourceManager.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
+    <ClCompile Include="AbsEnemy.cpp">
+      <Filter>Source Files\Model\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyA.cpp">
+      <Filter>Source Files\Model\Concrete</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IVisitable.h">
@@ -144,9 +147,6 @@
     </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Source Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="Math.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="IGameObjectFactory.h">
       <Filter>Source Files\AbstractFactory</Filter>
@@ -219,6 +219,15 @@
     </ClInclude>
     <ClInclude Include="UniversalCmd.h">
       <Filter>Source Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="AbsEnemy.h">
+      <Filter>Source Files\Model\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyA.h">
+      <Filter>Source Files\Model\Concrete</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMath.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

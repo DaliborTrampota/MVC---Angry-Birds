@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -131,19 +131,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AbsEnemy.cpp" />
     <ClCompile Include="AbsMissile.cpp" />
     <ClCompile Include="AbsPlayer.cpp" />
     <ClCompile Include="CareTaker.cpp" />
     <ClCompile Include="DoubleShootingMode.cpp" />
+    <ClCompile Include="EnemyA.cpp" />
     <ClCompile Include="LifetimeGameObject.cpp" />
+    <ClCompile Include="MyMath.cpp" />
     <ClCompile Include="RandomMovingStrategy.cpp" />
     <ClCompile Include="RealisticMovingStrategy.cpp" />
     <ClCompile Include="SDLController.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectFactoryA.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Math.cpp" />
     <ClCompile Include="MissileA.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="PlayerA.cpp" />
@@ -154,12 +155,14 @@
     <ClCompile Include="SingleShootingMode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbsEnemy.h" />
     <ClInclude Include="AbsMissile.h" />
     <ClInclude Include="AbsPlayer.h" />
     <ClInclude Include="AbstractGameCommand.h" />
     <ClInclude Include="CareTaker.h" />
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="DoubleShootingMode.h" />
+    <ClInclude Include="EnemyA.h" />
     <ClInclude Include="GameModelProxy.h" />
     <ClInclude Include="IController.h" />
     <ClInclude Include="IModel.h" />
@@ -171,6 +174,7 @@
     <ClInclude Include="LifetimeGameObject.h" />
     <ClInclude Include="MovePlrDownCmd.h" />
     <ClInclude Include="MovePlrUpCmd.h" />
+    <ClInclude Include="MyMath.h" />
     <ClInclude Include="RandomMovingStrategy.h" />
     <ClInclude Include="RealisticMovingStrategy.h" />
     <ClInclude Include="SDLController.h" />
@@ -180,7 +184,6 @@
     <ClInclude Include="IGameObjectFactory.h" />
     <ClInclude Include="IVisitable.h" />
     <ClInclude Include="IVisitor.h" />
-    <ClInclude Include="Math.h" />
     <ClInclude Include="MissileA.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="PlayerA.h" />
