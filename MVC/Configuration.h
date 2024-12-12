@@ -3,7 +3,7 @@
 #define WindowWidth 600
 #define WindowHeight 400
 
-#define Gravity 9.8
+#define Gravity 9.8f
 #define MagicTimeConst 100
 
 #define PlayerX 50

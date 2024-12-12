@@ -9,7 +9,7 @@ void RealistingMovingStrategy::updatePosition(AbsMissile* missile)
 	long time = missile->getAge() / MagicTimeConst;
 
 	missile->move({
-		(int)(missile->getVelocity() * time * cos(missile->getAngle())),
-		(int)(missile->getVelocity() * time * sin(missile->getAngle()) + 0.5 * Gravity * pow(time, 2))
+		(float)missile->getVelocity() * time * (float)cos(missile->getAngle()),
+		(float)missile->getVelocity() * time * (float)sin(missile->getAngle()) + 0.5f * Gravity * (float)pow(time, 2.f)
 		});
 }

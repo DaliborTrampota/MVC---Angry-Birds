@@ -6,7 +6,7 @@
 class MissileA : public AbsMissile
 {
 public:
-	MissileA(Vec2<int> pos, float angle, int velocity, IMovingStrategy* strategy);
+	MissileA(Vec2<float> pos, float angle, int velocity, IMovingStrategy* strategy);
 
 	void move() override;
 

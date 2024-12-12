@@ -6,7 +6,7 @@
 IShootingMode* AbsPlayer::SINGLE_SHOOTING_MODE = new SingleShootingMode();
 IShootingMode* AbsPlayer::DOUBLE_SHOOTING_MODE = new DoubleShootingMode();
 
-AbsPlayer::AbsPlayer(Vec2<int> pos, float initAngle, int initPower) :
+AbsPlayer::AbsPlayer(Vec2<float> pos, float initAngle, int initPower) :
 	GameObject(pos),
 	m_angle(initAngle),
 	m_power(initPower)

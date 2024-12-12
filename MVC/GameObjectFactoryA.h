@@ -3,8 +3,6 @@
 #include "IGameObjectFactory.h"
 #include "IMovingStrategy.h"
 
-class AbsPlayer;
-class AbsMissile;
 class IModel;
 
 class GameObjectFactoryA : public IGameObjectFactory
@@ -14,7 +12,7 @@ public:
 	
 	}
 
-	AbsPlayer* createPlayer(Vec2<int> pos) override;
+	AbsPlayer* createPlayer(Vec2<float> pos) override;
 	AbsMissile* createMissile(float initAngle, float initVelocity) override;
 
 private:

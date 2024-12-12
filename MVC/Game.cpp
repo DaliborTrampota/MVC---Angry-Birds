@@ -24,7 +24,7 @@ void Game::Run()
 	float deltaTime;
 	while (!m_controller->m_exit) {
 		auto curTime = std::chrono::steady_clock::now();
-		deltaTime = (prevTime - curTime).count();
+		deltaTime = std::chrono::duration<float>(curTime - prevTime).count();
 
 		m_controller->pollEvents();
 		m_view.render();

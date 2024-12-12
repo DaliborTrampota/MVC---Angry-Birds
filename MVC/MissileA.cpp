@@ -1,6 +1,6 @@
 #include "MissileA.h"
 
-MissileA::MissileA(Vec2<int> pos, float angle, int velocity, IMovingStrategy* strategy)
+MissileA::MissileA(Vec2<float> pos, float angle, int velocity, IMovingStrategy* strategy)
 	: AbsMissile(pos, angle, velocity),
 	m_movingStrategy(strategy)
 {

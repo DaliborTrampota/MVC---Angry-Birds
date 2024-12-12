@@ -5,7 +5,7 @@
 
 #include "Configuration.h"
 
-PlayerA::PlayerA(Vec2<int> pos) :
+PlayerA::PlayerA(Vec2<float> pos) :
     AbsPlayer(pos, InitAngle, InitPower),
     m_factory(nullptr)
 {

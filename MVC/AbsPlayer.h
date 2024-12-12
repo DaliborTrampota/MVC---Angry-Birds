@@ -12,7 +12,7 @@ public:
 	static IShootingMode* SINGLE_SHOOTING_MODE;
 	static IShootingMode* DOUBLE_SHOOTING_MODE;
 
-	AbsPlayer(Vec2<int> pos, float initAngle, int initPower);
+	AbsPlayer(Vec2<float> pos, float initAngle, int initPower);
 	//AbsPlayer(const char* name, const char* textureName) : GameObject(name, textureName) {}
 
 	void acceptVisitor(IVisitor* visitor) override;

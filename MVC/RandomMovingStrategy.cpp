@@ -12,7 +12,7 @@ RandomMovingStrategy::RandomMovingStrategy()
 
 void RandomMovingStrategy::updatePosition(AbsMissile* missile)
 {
-	missile->move({ 1, getDir() });
+	missile->move({ 1.f, (float)getDir() });
 }
 
 int RandomMovingStrategy::getDir()

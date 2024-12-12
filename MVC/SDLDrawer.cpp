@@ -37,7 +37,7 @@ void SDLDrawer::draw(GameObject* obj, const char* texName)
 {
 	auto pos = obj->getPosition();
 	auto dims = m_resourceMgr->getResource(texName).dims;//obj->getDimensions();
-	draw(texName, new SDL_Rect{ pos.x, pos.y, dims.x, dims.y });
+	draw(texName, new SDL_Rect{ (int)pos.x, (int)pos.y, dims.x, dims.y });
 }
 
 void SDLDrawer::draw(const char* texName, SDL_Rect* rect)

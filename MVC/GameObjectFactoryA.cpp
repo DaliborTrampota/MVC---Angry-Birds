@@ -4,7 +4,7 @@
 #include "PlayerA.h"
 #include "MissileA.h"
 
-AbsPlayer* GameObjectFactoryA::createPlayer(Vec2<int> pos)
+AbsPlayer* GameObjectFactoryA::createPlayer(Vec2<float> pos)
 {
     auto player = new PlayerA(pos);
     player->setTexture("cannon.png");

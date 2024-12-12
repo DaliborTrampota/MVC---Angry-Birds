@@ -6,10 +6,10 @@
 class GameObject : public IVisitable
 {
 public:
-	GameObject(Vec2<int> pos);
-	GameObject(Vec2<int> pos, const char* texName);
+	GameObject(Vec2<float> pos);
+	GameObject(Vec2<float> pos, const char* texName);
 	~GameObject();
-	void move(Vec2<int> dir);
+	void move(Vec2<float> dir);
 
 	void setName(const char* name);
 	void setTexture(const char* name);
@@ -17,7 +17,7 @@ public:
 
 	const char* getName() const;
 	const char* getTextureName() const;
-	Vec2<int> getPosition() const;
+	Vec2<float> getPosition() const;
 	Vec2<int> getDimensions() const;
 
 
@@ -29,7 +29,7 @@ public:
 protected:
 	const char* m_name;
 	const char* m_texName;
-	Vec2<int> m_pos;
+	Vec2<float> m_pos;
 	int m_width, m_height;
 
 

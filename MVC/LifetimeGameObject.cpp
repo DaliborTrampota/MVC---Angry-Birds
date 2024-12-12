@@ -1,6 +1,6 @@
 #include "LifetimeGameObject.h"
 
-LifetimeGameObject::LifetimeGameObject(Vec2<int> pos) : GameObject(pos)
+LifetimeGameObject::LifetimeGameObject(Vec2<float> pos) : GameObject(pos)
 {
 	m_createdAt = Clock::now();
 }
