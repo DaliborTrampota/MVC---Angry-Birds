@@ -16,3 +16,5 @@
 #define MaxPower 50
 #define MinPower 1
 
+#define DefaultEnemyHP 100
+
