@@ -1,5 +1,8 @@
 #include "AbsMissile.h"
-#include "sstream"
+#include "IDamageable.h"
+#include "Configuration.h"
+#include <sstream>
+#include <assert.h>
 
 void AbsMissile::acceptVisitor(IVisitor* visitor)
 {
@@ -12,9 +15,29 @@ float AbsMissile::getAngle() const
 	return m_angle;
 }
 
-int AbsMissile::getVelocity() const
+int AbsMissile::getPower() const
 {
-	return m_velocity;
+	return m_speed;
+}
+
+void AbsMissile::onHit(ICollidable* other)
+{
+	if (!m_active)
+		return;
+	IDamageable* dmg;
+	if (dmg = dynamic_cast<IDamageable*>(other)) {
+		dmg->damage(PlayerDamage);
+		m_active = false;
+	}
+}
+
+bool AbsMissile::checkCollision(ICollidable* other)
+{
+	auto obj = dynamic_cast<GameObject*>(other);
+	assert(obj);
+	auto otherPos = obj->getPosition();
+	float dist = sqrt(pow(otherPos.x - this->m_pos.x, 2) + pow(otherPos.y - this->m_pos.y, 2));
+	return dist < other->getCollisionRadius() + this->m_collisionRadius;
 }
 
 inline const char* AbsMissile::s_getName(const char* name)

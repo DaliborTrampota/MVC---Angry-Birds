@@ -3,7 +3,7 @@
 #include "GameObject.h"
 #include <chrono>
 
-class LifetimeGameObject : public GameObject
+class LifetimeGameObject : virtual public GameObject
 {
 	using Clock = std::chrono::steady_clock;
 

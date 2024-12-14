@@ -1,15 +1,16 @@
 #include "SimpleMovingStrategy.h"
 
 #include "Configuration.h"
+#include "GameObject.h"
 #include "AbsMissile.h"
 #include <iostream>
 
-void SimpleMovingStrategy::updatePosition(AbsMissile* missile, float dt)
+void SimpleMovingStrategy::updatePosition(GameObject* object, float dt)
 {
-	float time = 1.f - std::min(1.f, missile->getAge() / 500.f);
-	std::cout << missile->getAge() / 2000.f << std::endl;
-	missile->move({
-		(float)missile->getVelocity() * time * cos(missile->getAngle()),
-		(float)missile->getVelocity() * time* sin(missile->getAngle())
-		});
+	AbsMissile* missile = dynamic_cast<AbsMissile*>(object);
+	if (missile->affectedByGravity())
+		missile->useGravity(false);
+
+	Vec2<float> dir = { cos(missile->getAngle()), sin(missile->getAngle()) };
+	missile->move(dir, dt);
 }

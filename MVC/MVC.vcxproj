@@ -138,7 +138,9 @@
     <ClCompile Include="DoubleShootingMode.cpp" />
     <ClCompile Include="EnemyA.cpp" />
     <ClCompile Include="LifetimeGameObject.cpp" />
-    <ClCompile Include="MyMath.cpp" />
+    <ClCompile Include="FreeFall.cpp" />
+    <ClCompile Include="MovingGameObject.cpp" />
+    <ClCompile Include="PushStraighStrategy.cpp" />
     <ClCompile Include="RandomMovingStrategy.cpp" />
     <ClCompile Include="RealisticMovingStrategy.cpp" />
     <ClCompile Include="SDLController.cpp" />
@@ -164,7 +166,10 @@
     <ClInclude Include="DoubleShootingMode.h" />
     <ClInclude Include="EnemyA.h" />
     <ClInclude Include="GameModelProxy.h" />
+    <ClInclude Include="ICollidable.h" />
     <ClInclude Include="IController.h" />
+    <ClInclude Include="IDamageable.h" />
+    <ClInclude Include="FreeFall.h" />
     <ClInclude Include="IModel.h" />
     <ClInclude Include="IMovingStrategy.h" />
     <ClInclude Include="IObservable.h" />
@@ -174,7 +179,9 @@
     <ClInclude Include="LifetimeGameObject.h" />
     <ClInclude Include="MovePlrDownCmd.h" />
     <ClInclude Include="MovePlrUpCmd.h" />
+    <ClInclude Include="MovingGameObject.h" />
     <ClInclude Include="MyMath.h" />
+    <ClInclude Include="PushStraighStrategy.h" />
     <ClInclude Include="RandomMovingStrategy.h" />
     <ClInclude Include="RealisticMovingStrategy.h" />
     <ClInclude Include="SDLController.h" />

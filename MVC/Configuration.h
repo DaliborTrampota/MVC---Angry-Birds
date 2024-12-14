@@ -8,13 +8,19 @@
 
 #define PlayerX 50
 #define PlayerMoveSpeed 5
+#define PlayerDamage 20
 
 #define InitAngle 0.0f
-#define InitPower 10
+#define InitPower 1500
 #define AngleStep 3.14159f / 18.f
-#define PowerStep 1
-#define MaxPower 50
-#define MinPower 1
+#define PowerStep 100
+#define MaxPower 3000
+#define MinPower 500
 
 #define DefaultEnemyHP 100
+#define BaseEnemySpeed 10.f
+#define EnemyAcceleration 60.f
+#define EnemyKillScore 100
+
+#define AirDrag 1000.f
 

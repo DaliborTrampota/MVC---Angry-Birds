@@ -4,12 +4,12 @@
 #include "AbsMissile.h"
 
 
-void RealistingMovingStrategy::updatePosition(AbsMissile* missile, float dt)
+void RealistingMovingStrategy::updatePosition(GameObject* object, float dt)
 {
-	long time = missile->getAge() / MagicTimeConst;
+	AbsMissile* missile = dynamic_cast<AbsMissile*>(object);
+	if (!missile->affectedByGravity())
+		missile->useGravity(true);
 
-	missile->move({
-		(float)missile->getVelocity() * time * (float)cos(missile->getAngle()),
-		(float)missile->getVelocity() * time * (float)sin(missile->getAngle()) + 0.5f * Gravity * (float)pow(time, 2.f)
-		});
+	Vec2<float> dir = { cos(missile->getAngle()), sin(missile->getAngle()) };
+	missile->move(dir * missile->getPower(), dt);
 }

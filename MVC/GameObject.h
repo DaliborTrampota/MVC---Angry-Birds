@@ -9,14 +9,14 @@ public:
 	GameObject(Vec2<float> pos);
 	GameObject(Vec2<float> pos, const char* texName);
 	~GameObject();
-	void move(Vec2<float> dir);
+	virtual void move(Vec2<float> dir);
 
 	void setName(const char* name);
 	void setTexture(const char* name);
 	void setDims(int w, int h);
 
 	const char* getName() const;
-	const char* getTextureName() const;
+	virtual const char* getTextureName() const;
 	Vec2<float> getPosition() const;
 	Vec2<int> getDimensions() const;
 

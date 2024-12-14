@@ -1,21 +1,20 @@
 #include "EnemyA.h"
 
 #include "Configuration.h"
+#include "FreeFall.h"
 
-EnemyA::EnemyA(Vec2<float> pos) :
+EnemyA::EnemyA(Vec2<float> pos, IMovingStrategy* strategy) :
 	AbsEnemy(pos),
-	m_hp(DefaultEnemyHP)
+	GameObject(pos),
+	m_movingStrategy(strategy)
 {
+	m_affectedByGravity = false;
+	m_hp = DefaultEnemyHP;
 }
 
-void EnemyA::onHit()
+void EnemyA::move(float dt)
 {
-
-}
-
-void EnemyA::damage(int amount)
-{
-	m_hp -= amount;
+	m_movingStrategy->updatePosition(this, dt);
 }
 
 const char* EnemyA::getTextureName() const
@@ -23,4 +22,11 @@ const char* EnemyA::getTextureName() const
 	if (m_hp > 66) return "enemy1.png";
 	if (m_hp > 33) return "enemy2.png";
 	return "enemy2WithBlood.png";
+}
+
+void EnemyA::onKill()
+{
+	setVelocity({ 400, 600 });
+	m_movingStrategy = new FreeFall();
+	
 }

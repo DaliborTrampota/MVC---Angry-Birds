@@ -4,7 +4,7 @@
 
 #include <random>
 
-class AbsMissile;
+class GameObject;
 
 
 class RandomMovingStrategy : public IMovingStrategy {
@@ -12,7 +12,7 @@ class RandomMovingStrategy : public IMovingStrategy {
 public:
 	RandomMovingStrategy();
 
-	void updatePosition(AbsMissile* missile, float dt) override;
+	void updatePosition(GameObject* object, float dt) override;
 
 
 private:

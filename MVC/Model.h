@@ -14,6 +14,7 @@ class Game;
 class GameObject;
 class AbsPlayer;
 class AbsMissile;
+class AbsEnemy;
 class IGameObjectFactory;
 class AbstractGameCommand;
 
@@ -31,7 +32,6 @@ public:
 	void powerDown() override;
 	void shoot() override;
 
-	void destroyMissiles();
 	void toggleMovingStrategy() override;
 	void toggleShootingMode() override;
 
@@ -49,25 +49,35 @@ public:
 	void unregisterObserver(IObserver* observer) override;
 	void notifyObservers() override;
 
-	void update(float dt);
+	void update(float dt) override;
 
-	void setWindowSize(Rect<int> dims);
+	void setWindowSize(Rect<int> dims) override;
 
 protected:
-	Game* m_game;
+	void moveMissiles(float dt);
+	void moveEnemies(float dt);
+	void destroyMissiles();
+	void destroyEnemies();
+	void executeCommands();
+	void spawnEnemies();
+	void checkCollisions();
+	int getEnemyCount() const;
+
+
 	IGameObjectFactory* m_objectFactory;
 	std::unordered_set<IObserver*> m_observers;
 
 	AbsPlayer* m_player;
 	std::vector<AbsMissile*> m_missiles;
+	std::vector<AbsEnemy*> m_enemies;
 	int m_movingStrategyIndex = 0;
-
-	void moveMissiles(float dt);
-	void executeCommands();
 
 	std::queue<AbstractGameCommand*> m_unexecutedCommands;
 	std::stack<AbstractGameCommand*> m_executedCommands;
 
 	Rect<int> m_windowSize;
+
+	int m_score = 0;
+	float m_difficulty = 1.f;
 };
 

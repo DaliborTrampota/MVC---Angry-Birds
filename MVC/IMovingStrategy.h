@@ -1,9 +1,9 @@
 #pragma once
 
 
-class AbsMissile;
+class GameObject;
 
 class IMovingStrategy {
 public:
-	virtual void updatePosition(AbsMissile* missile, float dt) = 0;
+	virtual void updatePosition(GameObject* missile, float dt) = 0;
 };

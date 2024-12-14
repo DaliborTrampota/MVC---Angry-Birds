@@ -7,6 +7,7 @@
 #include "GameObject.h"
 #include "PlayerA.h"
 #include "AbsMissile.h"
+#include "AbsEnemy.h"
 
 #include "SimpleMovingStrategy.h"
 #include "RealisticMovingStrategy.h"
@@ -88,6 +89,19 @@ void Model::destroyMissiles()
 	m_missiles.erase(newEnd, m_missiles.end());
 }
 
+void Model::destroyEnemies()
+{
+	auto newEnd = std::remove_if(m_enemies.begin(), m_enemies.end(), [&](AbsEnemy* enemy) {
+		auto pos = enemy->getPosition();
+		if (enemy->dead() && pos.x > m_windowSize.w || pos.x < 0 || pos.y > m_windowSize.h || pos.y < 0) {
+			delete enemy;
+			return true;
+		}
+		return false;
+		});
+	m_enemies.erase(newEnd, m_enemies.end());
+}
+
 void Model::toggleMovingStrategy()
 {
 	m_movingStrategyIndex = (m_movingStrategyIndex + 1) % s_movingStrategies.size();
@@ -101,6 +115,9 @@ void Model::toggleShootingMode()
 void Model::update(float dt)
 {
 	moveMissiles(dt);
+	moveEnemies(dt);
+	checkCollisions();
+	spawnEnemies();
 	executeCommands();	
 }
 
@@ -118,6 +135,15 @@ void Model::moveMissiles(float dt)
 	notifyObservers();
 }
 
+void Model::moveEnemies(float dt)
+{
+	for (auto& e : m_enemies) {
+		e->move(dt);
+	}
+	destroyEnemies();
+	notifyObservers();
+}
+
 void Model::executeCommands()
 {
 	while (!m_unexecutedCommands.empty()) {
@@ -126,6 +152,37 @@ void Model::executeCommands()
 		cmd->doExecute();
 		m_executedCommands.push(cmd);
 	}
+}
+
+void Model::spawnEnemies()
+{
+	Vec2<int> min, max;
+
+	min = { m_windowSize.w - 150, 25 };
+	max = { m_windowSize.w - 25, m_windowSize.h - 75 };
+
+	if (m_enemies.size() < getEnemyCount() && rand() % 500 < 1) {
+		m_enemies.push_back(m_objectFactory->createEnemy(min, max));
+	}
+}
+
+void Model::checkCollisions()
+{
+	for (auto& m : m_missiles) {
+		for (auto& e : m_enemies) {
+			if (m->checkCollision(e)) {
+				m->onHit(e);
+				if (e->dead()) {
+					m_score += EnemyKillScore;
+				}
+			}
+		}
+	}
+}
+
+int Model::getEnemyCount() const
+{
+	return 5 * m_difficulty;
 }
 
 IModel::Memento* Model::createMemento()
@@ -175,6 +232,7 @@ std::vector<GameObject*> Model::getObjects() const
 {
 	auto objects = std::vector<GameObject*>{ m_player };
 	objects.insert(objects.end(), m_missiles.begin(), m_missiles.end());
+	objects.insert(objects.end(), m_enemies.begin(), m_enemies.end());
 	return objects;
 }
 

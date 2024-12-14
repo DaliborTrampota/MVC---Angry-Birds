@@ -2,12 +2,12 @@
 
 #include "IMovingStrategy.h"
 
-class AbsMissile;
+class GameObject;
 
 class RealistingMovingStrategy : public IMovingStrategy {
 
 public:
 	RealistingMovingStrategy() = default;
 
-	void updatePosition(AbsMissile* missile, float dt) override;
+	void updatePosition(GameObject* object, float dt) override;
 };

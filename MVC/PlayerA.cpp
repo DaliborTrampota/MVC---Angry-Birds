@@ -24,12 +24,12 @@ void PlayerA::moveDown()
 
 void PlayerA::aimUp()
 {
-    m_angle += AngleStep;
+    m_angle -= AngleStep;
 }
 
 void PlayerA::aimDown()
 {
-    m_angle -= AngleStep;
+    m_angle += AngleStep;
 }
 
 void PlayerA::powerUp()

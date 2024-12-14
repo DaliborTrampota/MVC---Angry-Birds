@@ -14,57 +14,57 @@ public:
 		m_subject->moveUp();
 	}
 
-	virtual void moveDown() override {
+	void moveDown() override {
 		m_subject->moveDown();
 	}
 
-	virtual void aimUp() override {
+	void aimUp() override {
 		m_subject->aimUp();
 	}
 
-	virtual void aimDown() override {
+	void aimDown() override {
 		m_subject->aimDown();
 	}
-	virtual void powerUp() override {
+	void powerUp() override {
 		m_subject->powerUp();
 	}
-	virtual void powerDown() override {
+	void powerDown() override {
 		m_subject->powerDown();
 	}
-	virtual void shoot() override {
+	void shoot() override {
 		m_subject->shoot();
 	}
 
-	virtual void toggleMovingStrategy() override {
+	void toggleMovingStrategy() override {
 		m_subject->toggleMovingStrategy();
 	}
 
-	virtual void toggleShootingMode() override {
+	void toggleShootingMode() override {
 		m_subject->toggleShootingMode();
 	}
 
-	virtual AbsPlayer* getPlayer() const override {
+	AbsPlayer* getPlayer() const override {
 		return m_subject->getPlayer();
 	}
 
-	virtual std::vector<GameObject*> getObjects() const override {
+	std::vector<GameObject*> getObjects() const override {
 		return m_subject->getObjects();
 	}
 
-	virtual IMovingStrategy* getMovingStrategy() const override {
+	IMovingStrategy* getMovingStrategy() const override {
 		return m_subject->getMovingStrategy();
 	}
 
-	virtual Memento* createMemento() override {
+	Memento* createMemento() override {
 		return m_subject->createMemento();
 	}
-	virtual void setMemento(Memento* memento) override {
+	void setMemento(Memento* memento) override {
 		m_subject->setMemento(memento);
 	}
-	virtual void registerCommand(AbstractGameCommand* cmd) override {
+	void registerCommand(AbstractGameCommand* cmd) override {
 		m_subject->registerCommand(cmd);
 	}
-	virtual void undoLastCommand() override {
+	void undoLastCommand() override {
 		m_subject->undoLastCommand();
 	}
 
@@ -80,8 +80,12 @@ public:
 		m_subject->notifyObservers();
 	}
 
+	void setWindowSize(Rect<int> dims) override {
+		m_subject->setWindowSize(dims);
+	}
+
 protected:
-	virtual void update(float dt) override {
+	void update(float dt) override {
 		m_subject->update(dt);
 	}
 

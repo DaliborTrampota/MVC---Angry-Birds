@@ -45,6 +45,15 @@
     <Filter Include="Source Files\Memento">
       <UniqueIdentifier>{c5307bc1-fbd2-478d-8b67-420722e5fa80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Strategy\Player">
+      <UniqueIdentifier>{bdfe69b8-e02b-417e-a8a3-f29b44648d35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Strategy\Enemy">
+      <UniqueIdentifier>{496c05ca-cae5-4d84-9e06-1582ebf5504d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Collisions">
+      <UniqueIdentifier>{c5c8bc43-d82d-4a68-9982-ee2f86d9aa77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -83,15 +92,6 @@
     <ClCompile Include="LifetimeGameObject.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="RandomMovingStrategy.cpp">
-      <Filter>Source Files\Strategy</Filter>
-    </ClCompile>
-    <ClCompile Include="RealisticMovingStrategy.cpp">
-      <Filter>Source Files\Strategy</Filter>
-    </ClCompile>
-    <ClCompile Include="SimpleMovingStrategy.cpp">
-      <Filter>Source Files\Strategy</Filter>
-    </ClCompile>
     <ClCompile Include="SingleShootingMode.cpp">
       <Filter>Source Files\State</Filter>
     </ClCompile>
@@ -110,8 +110,23 @@
     <ClCompile Include="EnemyA.cpp">
       <Filter>Source Files\Model\Concrete</Filter>
     </ClCompile>
-    <ClCompile Include="MyMath.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="RandomMovingStrategy.cpp">
+      <Filter>Source Files\Strategy\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="RealisticMovingStrategy.cpp">
+      <Filter>Source Files\Strategy\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleMovingStrategy.cpp">
+      <Filter>Source Files\Strategy\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PushStraighStrategy.cpp">
+      <Filter>Source Files\Strategy\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingGameObject.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeFall.cpp">
+      <Filter>Source Files\Strategy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -178,15 +193,6 @@
     <ClInclude Include="IMovingStrategy.h">
       <Filter>Source Files\Strategy</Filter>
     </ClInclude>
-    <ClInclude Include="RandomMovingStrategy.h">
-      <Filter>Source Files\Strategy</Filter>
-    </ClInclude>
-    <ClInclude Include="RealisticMovingStrategy.h">
-      <Filter>Source Files\Strategy</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleMovingStrategy.h">
-      <Filter>Source Files\Strategy</Filter>
-    </ClInclude>
     <ClInclude Include="IShootingMode.h">
       <Filter>Source Files\State</Filter>
     </ClInclude>
@@ -228,6 +234,30 @@
     </ClInclude>
     <ClInclude Include="MyMath.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomMovingStrategy.h">
+      <Filter>Source Files\Strategy\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="RealisticMovingStrategy.h">
+      <Filter>Source Files\Strategy\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleMovingStrategy.h">
+      <Filter>Source Files\Strategy\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PushStraighStrategy.h">
+      <Filter>Source Files\Strategy\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingGameObject.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ICollidable.h">
+      <Filter>Source Files\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="IDamageable.h">
+      <Filter>Source Files\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeFall.h">
+      <Filter>Source Files\Strategy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

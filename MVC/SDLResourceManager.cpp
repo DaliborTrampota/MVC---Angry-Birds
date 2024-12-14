@@ -33,5 +33,4 @@ void SDLResourceManager::loadResource(const char* name)
     texture.dims = { surface->w, surface->h };
     m_textures[name] = texture;
     SDL_FreeSurface(surface);
-
 }

@@ -1,18 +1,18 @@
 #pragma once
 
 #include "AbsEnemy.h"
+#include "IMovingStrategy.h"
 
 class EnemyA : public AbsEnemy {
 
 public:
-	EnemyA(Vec2<float> pos);
+	EnemyA(Vec2<float> pos, IMovingStrategy* strategy);
 
-	void onHit() override;
-	void damage(int amount) override;
+	void move(float dt) override;
+	const char* getTextureName() const override;
 
-	const char* getTextureName() const;
+	void onKill() override;
 
 private:
-	int m_hp;
-
+	IMovingStrategy* m_movingStrategy;
 };

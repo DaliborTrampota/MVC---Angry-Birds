@@ -5,6 +5,16 @@
 #include "MissileA.h"
 #include "EnemyA.h"
 
+
+#include "IMovingStrategy.h"
+#include "PushStraighStrategy.h"
+
+static std::vector<IMovingStrategy*> s_enemyMovingStrategies = {
+    new PushStraightStrategy(),
+};
+
+
+
 AbsPlayer* GameObjectFactoryA::createPlayer(Vec2<float> pos)
 {
     auto player = new PlayerA(pos);
@@ -24,5 +34,8 @@ AbsEnemy* GameObjectFactoryA::createEnemy(Vec2<int> min, Vec2<int> max)
 {
     int x = rand() % (max.x - min.x) + min.x;
     int y = rand() % (max.y - min.y) + min.y;
-    return new EnemyA({ (float)x, (float)y });
+
+    IMovingStrategy* randomStrategy = s_enemyMovingStrategies[rand() % s_enemyMovingStrategies.size()];
+
+    return new EnemyA({ (float)x, (float)y }, randomStrategy);
 }
