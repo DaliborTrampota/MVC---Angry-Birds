@@ -49,7 +49,7 @@ void SDLDrawer::draw(const char* texName, SDL_Rect* rect)
 void SDLDrawer::initSDL()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
-	m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WindowWidth, WindowHeight, SDL_WINDOW_SHOWN);
+	m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WindowWidth, WindowHeight, SDL_WINDOW_SHOWN); //SDL_WINDOW_RESIZABLE
 	m_renderer = SDL_CreateRenderer(m_window, -1, 0);
 
 	m_resourceMgr = new SDLResourceManager(m_renderer);

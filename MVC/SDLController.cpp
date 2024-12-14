@@ -85,5 +85,10 @@ void SDLController::pollEvents()
 	case SDL_KEYDOWN:
 		onKeyPress(e.key.keysym.scancode);
 		break;
+
+	case SDL_WINDOWEVENT:
+		if (e.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
+			m_model->setWindowSize({ 0, 0, e.window.data1, e.window.data2 });
+		}
 	}
 }
