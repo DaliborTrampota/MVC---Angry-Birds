@@ -49,11 +49,5 @@ public:
 	virtual void update(float dt) = 0;
 
 	virtual void setWindowSize(Rect<int> dims) = 0;
-
-
-	/*virtual void registerObserver(IObserver* observer) override = 0;
-	virtual void unregisterObserver(IObserver* observer) override;
-	virtual void notifyObservers() override;*/
-
 };
 

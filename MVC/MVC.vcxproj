@@ -199,6 +199,7 @@
     <ClInclude Include="SDLView.h" />
     <ClInclude Include="SimpleMovingStrategy.h" />
     <ClInclude Include="SingleShootingMode.h" />
+    <ClInclude Include="TeleportStrategy.h" />
     <ClInclude Include="UniversalCmd.h" />
   </ItemGroup>
   <ItemGroup>

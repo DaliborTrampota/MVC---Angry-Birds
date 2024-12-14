@@ -10,6 +10,7 @@ SDLView::SDLView(IModel* model) : m_model(model)
 {
 	m_gameDrawer.initSDL();
 	m_cont = SDLController(m_model);
+	model->registerObserver(this);
 }
 
 void SDLView::render()
@@ -20,6 +21,11 @@ void SDLView::render()
 		obj->acceptVisitor(&m_gameDrawer);
 	}
 	m_gameDrawer.doRender();
+}
+
+void SDLView::update()
+{
+	render();
 }
 
 Rect<int> SDLView::getWindowRect() const

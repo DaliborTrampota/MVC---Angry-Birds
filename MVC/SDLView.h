@@ -3,6 +3,7 @@
 #include "SDLController.h"
 #include "SDLDrawer.h"
 #include "IView.h"
+#include "IObserver.h"
 
 #include <unordered_map>
 #include <string>
@@ -13,15 +14,16 @@ struct SDL_Rect;
 
 
 // SDL2 View
-class SDLView // : public IView
+class SDLView : public IObserver // : public IView
 {
 public:
 	SDLView() = default;
 	SDLView(IModel* model);
 
 	void render();
-	Rect<int> getWindowRect() const;
+	void update() override;
 
+	Rect<int> getWindowRect() const;
 	SDLController* getController();
 
 private:

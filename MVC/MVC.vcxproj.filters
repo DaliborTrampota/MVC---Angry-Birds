@@ -259,6 +259,9 @@
     <ClInclude Include="FreeFall.h">
       <Filter>Source Files\Strategy</Filter>
     </ClInclude>
+    <ClInclude Include="TeleportStrategy.h">
+      <Filter>Source Files\Strategy\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\images\back.jpg">
