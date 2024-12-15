@@ -15,12 +15,10 @@ void MissileA::move(float dt)
 	m_movingStrategy->updatePosition(this, dt);
 }
 
-void MissileA::onHit(ICollidable* other)
+bool MissileA::onHit(ICollidable* other)
 {
-	if (!m_active)
-		return;
-
-	AbsMissile::onHit(other);
+	if (!AbsMissile::onHit(other))
+		return false;	
 
 	AbsEnemy* enemy;
 	if (enemy = dynamic_cast<AbsEnemy*>(other)) {
@@ -31,4 +29,5 @@ void MissileA::onHit(ICollidable* other)
 
 	m_acceleration = AirDrag;
 	m_movingStrategy = new FreeFall();
+	return true;
 }

@@ -6,11 +6,12 @@
 class EnemyA : public AbsEnemy {
 
 public:
-	EnemyA(Vec2<float> pos, IMovingStrategy* strategy);
+	EnemyA(Vec2<float> pos, float speed, IMovingStrategy* strategy);
 
 	void move(float dt) override;
 	const char* getTextureName() const override;
 
+	bool onHit(ICollidable* other) override { return true; };
 	void onKill() override;
 
 private:

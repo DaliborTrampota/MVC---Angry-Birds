@@ -49,5 +49,7 @@ public:
 	virtual void update(float dt) = 0;
 
 	virtual void setWindowSize(Rect<int> dims) = 0;
+	virtual Rect<int> getWindowSize() const = 0;
+	virtual float getEnemySpeed() const = 0;
 };
 

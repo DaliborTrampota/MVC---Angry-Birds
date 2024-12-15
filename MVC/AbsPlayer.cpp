@@ -28,3 +28,17 @@ int AbsPlayer::getPower() const
 {
 	return m_power;
 }
+
+void AbsPlayer::takeDamage(int dmg)
+{
+	m_hp -= dmg;
+}
+
+int AbsPlayer::getHP() const {
+	return m_hp;
+}
+
+IShootingMode* AbsPlayer::activeShootingMode() const
+{
+	return m_shootingMode;
+}

@@ -10,14 +10,14 @@ class GameObject;
 class RandomMovingStrategy : public IMovingStrategy {
 
 public:
-	RandomMovingStrategy();
+	RandomMovingStrategy(int min = -2, int max = 2);
 
 	void updatePosition(GameObject* object, float dt) override;
 
 
-private:
+protected:
 	std::mt19937 m_generator;
 	std::uniform_int_distribution<int> m_distribution;
 
-	int getDir();
+	int random();
 };

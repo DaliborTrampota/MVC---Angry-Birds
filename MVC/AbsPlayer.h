@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "Configuration.h"
 #include "GameObject.h"
 #include "AbsMissile.h"
 #include "IShootingMode.h"
@@ -35,11 +36,15 @@ public:
 	virtual void setAngle(float angle) = 0;
 	virtual void setPower(int power) = 0;
 
+	void takeDamage(int dmg);
+	int getHP() const;
+	IShootingMode* activeShootingMode() const;
+
 protected:
 	IShootingMode* m_shootingMode = nullptr;
 	float m_angle;
 	int m_power;
 
-
+	int m_hp = PlayerHealth;
 };
 

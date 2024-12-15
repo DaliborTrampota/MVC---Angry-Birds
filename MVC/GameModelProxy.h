@@ -84,6 +84,15 @@ public:
 		m_subject->setWindowSize(dims);
 	}
 
+	Rect<int> getWindowSize() const override {
+		return m_subject->getWindowSize();
+	}
+
+
+	float getEnemySpeed() const override {
+		return m_subject->getEnemySpeed();
+	}
+
 protected:
 	void update(float dt) override {
 		m_subject->update(dt);

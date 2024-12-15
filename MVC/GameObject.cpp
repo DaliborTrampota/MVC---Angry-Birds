@@ -35,6 +35,11 @@ void GameObject::setDims(int w, int h)
 	m_height = h;
 }
 
+void GameObject::setPos(Vec2<float> pos)
+{
+	m_pos = pos;
+}
+
 const char* GameObject::getName() const
 {
 	return m_name;

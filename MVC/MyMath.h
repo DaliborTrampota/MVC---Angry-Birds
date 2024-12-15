@@ -64,6 +64,11 @@ struct Vec2 {
 	Vec2 operator*(const float scalar) {
 		return { x * scalar, y * scalar };
 	}
+
+	template <typename U>
+	operator Vec2<U>() {
+		return { (U)x, (U)y };
+	}
 };
 
 template <class T = int>

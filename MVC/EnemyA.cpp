@@ -3,13 +3,13 @@
 #include "Configuration.h"
 #include "FreeFall.h"
 
-EnemyA::EnemyA(Vec2<float> pos, IMovingStrategy* strategy) :
-	AbsEnemy(pos),
+EnemyA::EnemyA(Vec2<float> pos, float speed, IMovingStrategy* strategy) :
+	AbsEnemy(pos, speed),
 	GameObject(pos),
 	m_movingStrategy(strategy)
 {
 	m_affectedByGravity = false;
-	m_hp = DefaultEnemyHP;
+	m_hp = EnemyHP;
 }
 
 void EnemyA::move(float dt)
@@ -27,6 +27,6 @@ const char* EnemyA::getTextureName() const
 void EnemyA::onKill()
 {
 	setVelocity({ 400, 600 });
+	m_acceleration = AirDrag;
 	m_movingStrategy = new FreeFall();
-	
 }

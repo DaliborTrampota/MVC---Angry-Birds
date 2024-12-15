@@ -54,6 +54,9 @@
     <Filter Include="Source Files\Collisions">
       <UniqueIdentifier>{c5c8bc43-d82d-4a68-9982-ee2f86d9aa77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Model\Object">
+      <UniqueIdentifier>{0ce0f36e-4efa-4c76-915a-1c0462e294ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -67,9 +70,6 @@
     </ClCompile>
     <ClCompile Include="SDLView.cpp">
       <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="SDLDrawer.cpp">
       <Filter>Source Files\View</Filter>
@@ -88,9 +88,6 @@
     </ClCompile>
     <ClCompile Include="GameObjectFactoryA.cpp">
       <Filter>Source Files\AbstractFactory</Filter>
-    </ClCompile>
-    <ClCompile Include="LifetimeGameObject.cpp">
-      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="SingleShootingMode.cpp">
       <Filter>Source Files\State</Filter>
@@ -122,11 +119,23 @@
     <ClCompile Include="PushStraighStrategy.cpp">
       <Filter>Source Files\Strategy\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="MovingGameObject.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="FreeFall.cpp">
       <Filter>Source Files\Strategy</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Model\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="LifetimeGameObject.cpp">
+      <Filter>Source Files\Model\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingGameObject.cpp">
+      <Filter>Source Files\Model\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TextObject.cpp">
+      <Filter>Source Files\Model\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TeleportStrategy.cpp">
+      <Filter>Source Files\Strategy\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,9 +169,6 @@
     <ClInclude Include="AbsMissile.h">
       <Filter>Source Files\Model\Abstract</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Source Files\Model</Filter>
-    </ClInclude>
     <ClInclude Include="IGameObjectFactory.h">
       <Filter>Source Files\AbstractFactory</Filter>
     </ClInclude>
@@ -180,9 +186,6 @@
     </ClInclude>
     <ClInclude Include="IController.h">
       <Filter>Source Files\Controller</Filter>
-    </ClInclude>
-    <ClInclude Include="LifetimeGameObject.h">
-      <Filter>Source Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="IObservable.h">
       <Filter>Source Files\Observer</Filter>
@@ -247,9 +250,6 @@
     <ClInclude Include="PushStraighStrategy.h">
       <Filter>Source Files\Strategy\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="MovingGameObject.h">
-      <Filter>Source Files\Model</Filter>
-    </ClInclude>
     <ClInclude Include="ICollidable.h">
       <Filter>Source Files\Collisions</Filter>
     </ClInclude>
@@ -261,6 +261,18 @@
     </ClInclude>
     <ClInclude Include="TeleportStrategy.h">
       <Filter>Source Files\Strategy\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Source Files\Model\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingGameObject.h">
+      <Filter>Source Files\Model\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="LifetimeGameObject.h">
+      <Filter>Source Files\Model\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TextObject.h">
+      <Filter>Source Files\Model\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

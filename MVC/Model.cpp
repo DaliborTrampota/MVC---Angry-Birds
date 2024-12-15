@@ -97,6 +97,11 @@ void Model::destroyEnemies()
 			delete enemy;
 			return true;
 		}
+		else if (pos.x <= PlayerX) {
+			delete enemy;
+			m_player->takeDamage(EnemyDamage);
+			return true;
+		}
 		return false;
 		});
 	m_enemies.erase(newEnd, m_enemies.end());
@@ -124,6 +129,11 @@ void Model::update(float dt)
 void Model::setWindowSize(Rect<int> dims)
 {
 	m_windowSize = dims;
+}
+
+Rect<int> Model::getWindowSize() const
+{
+	return m_windowSize;
 }
 
 void Model::moveMissiles(float dt)
@@ -158,10 +168,13 @@ void Model::spawnEnemies()
 {
 	Vec2<int> min, max;
 
-	min = { m_windowSize.w - 150, 25 };
-	max = { m_windowSize.w - 25, m_windowSize.h - 75 };
+	//min = { m_windowSize.w - 150, 25 };
+	//max = { m_windowSize.w - 25, m_windowSize.h - 75 };
 
-	if (m_enemies.size() < getEnemyCount() && rand() % 500 < 1) {
+	min = { m_windowSize.w, 25 };
+	max = { m_windowSize.w + 10, m_windowSize.h - 75 };
+
+	if (m_enemies.size() < getEnemyCount() && rand() % 100 == 0) {
 		m_enemies.push_back(m_objectFactory->createEnemy(min, max));
 	}
 }
@@ -171,8 +184,7 @@ void Model::checkCollisions()
 	for (auto& m : m_missiles) {
 		for (auto& e : m_enemies) {
 			if (m->checkCollision(e)) {
-				m->onHit(e);
-				if (e->dead()) {
+				if(m->onHit(e) && e->dead()) {
 					m_score += EnemyKillScore;
 				}
 			}
@@ -182,7 +194,11 @@ void Model::checkCollisions()
 
 int Model::getEnemyCount() const
 {
-	return 5 * m_difficulty;
+	return 5 + EnemyCountCoef * m_score;
+}
+
+float Model::getEnemySpeed() const {
+	return 1.f + EnemySpeedCoef * sqrt(m_score);
 }
 
 IModel::Memento* Model::createMemento()
@@ -198,7 +214,7 @@ IModel::Memento* Model::createMemento()
 void Model::setMemento(Memento* memento)
 {
 	auto plr = getPlayer();
-	plr->move(memento->position - plr->getPosition());
+	plr->setPos(memento->position);
 	plr->setAngle(memento->angle);
 	plr->setPower(memento->velocity);
 }

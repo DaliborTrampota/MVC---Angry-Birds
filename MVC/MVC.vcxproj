@@ -155,6 +155,8 @@
     <ClCompile Include="SDLView.cpp" />
     <ClCompile Include="SimpleMovingStrategy.cpp" />
     <ClCompile Include="SingleShootingMode.cpp" />
+    <ClCompile Include="TeleportStrategy.cpp" />
+    <ClCompile Include="TextObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbsEnemy.h" />
@@ -200,6 +202,7 @@
     <ClInclude Include="SimpleMovingStrategy.h" />
     <ClInclude Include="SingleShootingMode.h" />
     <ClInclude Include="TeleportStrategy.h" />
+    <ClInclude Include="TextObject.h" />
     <ClInclude Include="UniversalCmd.h" />
   </ItemGroup>
   <ItemGroup>

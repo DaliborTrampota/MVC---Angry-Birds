@@ -20,7 +20,6 @@ class AbstractGameCommand;
 
 class Model : public IModel
 {
-
 public:
 	Model();
 
@@ -52,6 +51,9 @@ public:
 	void update(float dt) override;
 
 	void setWindowSize(Rect<int> dims) override;
+	Rect<int> getWindowSize() const override;
+
+	float getEnemySpeed() const override;
 
 protected:
 	void moveMissiles(float dt);
@@ -78,6 +80,5 @@ protected:
 	Rect<int> m_windowSize;
 
 	int m_score = 0;
-	float m_difficulty = 1.f;
 };
 

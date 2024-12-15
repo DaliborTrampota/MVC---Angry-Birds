@@ -5,17 +5,17 @@
 
 #include "AbsMissile.h"
 
-RandomMovingStrategy::RandomMovingStrategy()
-	: m_distribution(-2, 2)
+RandomMovingStrategy::RandomMovingStrategy(int min, int max) :
+	m_distribution(min, max)
 {
 }
 
 void RandomMovingStrategy::updatePosition(GameObject* object, float dt)
 {
-	object->move({ 1.f, (float)getDir() });
+	object->move({ 1.f, (float)random() });
 }
 
-int RandomMovingStrategy::getDir()
+int RandomMovingStrategy::random()
 {
 	return m_distribution(m_generator);
 }

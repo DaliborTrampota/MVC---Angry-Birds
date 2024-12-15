@@ -28,7 +28,7 @@ void Game::Run()
 
 		m_controller->pollEvents();
 		m_model->update(deltaTime);
-
+		printf("FPS: %i\n", (int)(1.f / deltaTime));
 		prevTime = curTime;
 	}
 }

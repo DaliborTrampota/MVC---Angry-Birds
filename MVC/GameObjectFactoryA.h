@@ -8,7 +8,7 @@ class IModel;
 class GameObjectFactoryA : public IGameObjectFactory
 {
 public:
-	GameObjectFactoryA(IModel* model) : m_model(model) {}
+	GameObjectFactoryA(IModel* model);
 
 	AbsPlayer* createPlayer(Vec2<float> pos) override;
 	AbsMissile* createMissile(float initAngle, float initVelocity) override;

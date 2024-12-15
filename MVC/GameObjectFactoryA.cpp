@@ -8,12 +8,18 @@
 
 #include "IMovingStrategy.h"
 #include "PushStraighStrategy.h"
+#include "TeleportStrategy.h"
 
 static std::vector<IMovingStrategy*> s_enemyMovingStrategies = {
     new PushStraightStrategy(),
 };
 
 
+
+GameObjectFactoryA::GameObjectFactoryA(IModel* model) : m_model(model)
+{
+    s_enemyMovingStrategies.push_back(new TeleportStrategy(model));
+}
 
 AbsPlayer* GameObjectFactoryA::createPlayer(Vec2<float> pos)
 {
@@ -37,5 +43,5 @@ AbsEnemy* GameObjectFactoryA::createEnemy(Vec2<int> min, Vec2<int> max)
 
     IMovingStrategy* randomStrategy = s_enemyMovingStrategies[rand() % s_enemyMovingStrategies.size()];
 
-    return new EnemyA({ (float)x, (float)y }, randomStrategy);
+    return new EnemyA({ (float)x, (float)y }, BaseEnemySpeed * m_model->getEnemySpeed(), randomStrategy);
 }

@@ -20,15 +20,19 @@ int AbsMissile::getPower() const
 	return m_speed;
 }
 
-void AbsMissile::onHit(ICollidable* other)
+bool AbsMissile::onHit(ICollidable* other)
 {
 	if (!m_active)
-		return;
+		return false;
+
 	IDamageable* dmg;
 	if (dmg = dynamic_cast<IDamageable*>(other)) {
+		if (dmg->dead())
+			return false;
 		dmg->damage(PlayerDamage);
 		m_active = false;
 	}
+	return true;
 }
 
 bool AbsMissile::checkCollision(ICollidable* other)
@@ -38,6 +42,11 @@ bool AbsMissile::checkCollision(ICollidable* other)
 	auto otherPos = obj->getPosition();
 	float dist = sqrt(pow(otherPos.x - this->m_pos.x, 2) + pow(otherPos.y - this->m_pos.y, 2));
 	return dist < other->getCollisionRadius() + this->m_collisionRadius;
+}
+
+bool AbsMissile::isActive() const
+{
+	return m_active;
 }
 
 inline const char* AbsMissile::s_getName(const char* name)

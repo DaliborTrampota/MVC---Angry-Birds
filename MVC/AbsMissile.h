@@ -23,8 +23,9 @@ public:
 
 	using MovingGameObject::move;
 	virtual void move(float dt) = 0;
-	virtual void onHit(ICollidable* other) override;
+	virtual bool onHit(ICollidable* other) override;
 	bool checkCollision(ICollidable* other) override;
+	bool isActive() const;
 
 	static inline unsigned int s_ID = 0;
 	static inline const char* s_getName(const char* name);

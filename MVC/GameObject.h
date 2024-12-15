@@ -14,6 +14,7 @@ public:
 	void setName(const char* name);
 	void setTexture(const char* name);
 	void setDims(int w, int h);
+	void setPos(Vec2<float> pos);
 
 	const char* getName() const;
 	virtual const char* getTextureName() const;
