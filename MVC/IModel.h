@@ -32,6 +32,7 @@ public:
 
 	virtual AbsPlayer* getPlayer() const = 0;
 	virtual std::vector<GameObject*> getObjects() const = 0;
+	virtual std::vector<GameObject*> getUIObjects() const = 0;
 	virtual IMovingStrategy* getMovingStrategy() const = 0;
 
 
@@ -50,6 +51,16 @@ public:
 
 	virtual void setWindowSize(Rect<int> dims) = 0;
 	virtual Rect<int> getWindowSize() const = 0;
+
+	struct GameInfo {
+		int score;
+		size_t enemyCount;
+		int power;
+		float angle;
+		int hp;
+	};
+
+	virtual GameInfo getGameInfo() const = 0;
 	virtual float getEnemySpeed() const = 0;
 };
 

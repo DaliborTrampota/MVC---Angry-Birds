@@ -11,6 +11,10 @@ public:
 
 	void updatePosition(GameObject* obj, float dt) override;
 
+	const char* name() override {
+		return "Teleport";
+	}
+
 protected:
 	IModel* m_model;
 };

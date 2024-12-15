@@ -3,9 +3,11 @@
 #include "Configuration.h"
 
 #include "GameObject.h"
+#include "TextObject.h"
 #include "AbsPlayer.h"
 
 #include "SDL2/SDL.h"
+#include "SDL2/SDL_ttf.h"
 
 
 //void SDLDrawer::visitPlayer(AbsPlayer* player)
@@ -18,9 +20,19 @@
 //	draw(missile);
 //}
 
+SDLDrawer::~SDLDrawer()
+{
+	//TTF_Quit();
+}
+
 void SDLDrawer::visitObject(GameObject* obj)
 {
 	draw(obj);
+}
+
+void SDLDrawer::visitTextObject(TextObject* text)
+{
+	draw(text);
 }
 
 void SDLDrawer::drawBackground()
@@ -46,9 +58,38 @@ void SDLDrawer::draw(const char* texName, SDL_Rect* rect)
 	int res = SDL_RenderCopy(m_renderer, tex, NULL, rect);
 }
 
+void SDLDrawer::draw(TextObject* text)
+{
+	TextObject::Style style = text->getStyle();
+	auto pos = text->getPosition();
+	TTF_Font* font = TTF_OpenFont("D:/GithubPersonal/MVC/Game/resources/fonts/arial.ttf", style.fontSize);
+	if (!font)
+		throw "font not loaded";
+
+	SDL_Surface* surface = TTF_RenderText_Blended_Wrapped(
+		font, 
+		text->getText(), 
+		{ uint8_t(style.color[0] * 255), uint8_t(style.color[1] * 255), uint8_t(style.color[2] * 255) },
+		NULL
+	);
+	TTF_CloseFont(font);
+
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(m_renderer, surface);
+	SDL_Rect textRect = { pos.x, pos.y, 0, 0 };
+	SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
+
+	int res = SDL_RenderCopy(m_renderer, texture, NULL, &textRect);
+
+	SDL_DestroyTexture(texture);
+	SDL_FreeSurface(surface);
+}
+
 void SDLDrawer::initSDL()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
+	if (TTF_Init() == -1)
+		throw "hey";
+
 	m_window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WindowWidth, WindowHeight, SDL_WINDOW_SHOWN); //SDL_WINDOW_RESIZABLE
 	m_renderer = SDL_CreateRenderer(m_window, -1, 0);
 

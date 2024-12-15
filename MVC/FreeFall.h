@@ -8,4 +8,8 @@ public:
 	FreeFall() = default;
 
 	void updatePosition(GameObject* obj, float dt) override;
+	
+	const char* name() override {
+		return "FreeFall";
+	}
 };

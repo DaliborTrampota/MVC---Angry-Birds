@@ -51,6 +51,10 @@ public:
 		return m_subject->getObjects();
 	}
 
+	std::vector<GameObject*> getUIObjects() const override {
+		return m_subject->getUIObjects();
+	}
+
 	IMovingStrategy* getMovingStrategy() const override {
 		return m_subject->getMovingStrategy();
 	}
@@ -88,6 +92,9 @@ public:
 		return m_subject->getWindowSize();
 	}
 
+	GameInfo getGameInfo() const override {
+		return m_subject->getGameInfo();
+	}
 
 	float getEnemySpeed() const override {
 		return m_subject->getEnemySpeed();

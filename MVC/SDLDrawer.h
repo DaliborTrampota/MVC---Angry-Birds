@@ -17,13 +17,16 @@ class AbsMissile;
 class SDLDrawer : public IVisitor
 {
 public:
+	~SDLDrawer();
 	//void visitPlayer(AbsPlayer* player) override;
 	//void visitMissile(AbsMissile* missile) override;
 	void visitObject(GameObject* obj) override;
+	void visitTextObject(TextObject* text) override;
 
 	void drawBackground();
 
 	inline void draw(GameObject* obj);
+	void draw(TextObject* text);
 	void draw(GameObject* obj, const char* texName);
 	void draw(const char* texName, SDL_Rect* dstRect);
 

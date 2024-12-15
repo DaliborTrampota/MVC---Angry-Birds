@@ -14,6 +14,9 @@ public:
 
 	void updatePosition(GameObject* object, float dt) override;
 
+	const char* name() override {
+		return "Random";
+	}
 
 protected:
 	std::mt19937 m_generator;

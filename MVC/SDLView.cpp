@@ -20,6 +20,9 @@ void SDLView::render()
 	for (auto& obj : m_model->getObjects()) {
 		obj->acceptVisitor(&m_gameDrawer);
 	}
+	for (auto& element : m_model->getUIObjects()) {
+		element->acceptVisitor(&m_gameDrawer);
+	}
 	m_gameDrawer.doRender();
 }
 

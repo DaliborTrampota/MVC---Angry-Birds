@@ -10,4 +10,8 @@ public:
 	RealistingMovingStrategy() = default;
 
 	void updatePosition(GameObject* object, float dt) override;
+
+	const char* name() override {
+		return "Realistic";
+	}
 };

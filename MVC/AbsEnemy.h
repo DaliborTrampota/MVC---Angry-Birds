@@ -1,5 +1,5 @@
 #pragma once
-#include <cstdio>
+
 #include "Configuration.h"
 #include "MovingGameObject.h"
 #include "ICollidable.h"

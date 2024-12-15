@@ -8,4 +8,8 @@ public:
 	SimpleMovingStrategy() = default;
 
 	void updatePosition(GameObject* object, float dt) override;
+
+	const char* name() override {
+		return "Simple";
+	}
 };

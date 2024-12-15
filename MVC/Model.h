@@ -3,6 +3,7 @@
 #include "MyMath.h"
 #include "IModel.h"
 #include "IMovingStrategy.h"
+#include "TextObject.h"
 
 #include <functional>
 #include <vector>
@@ -37,6 +38,7 @@ public:
 
 	AbsPlayer* getPlayer() const override;
 	std::vector<GameObject*> getObjects() const override;
+	std::vector<GameObject*> getUIObjects() const override;
 	IMovingStrategy* getMovingStrategy() const override;
 
 	Memento* createMemento() override;
@@ -53,6 +55,7 @@ public:
 	void setWindowSize(Rect<int> dims) override;
 	Rect<int> getWindowSize() const override;
 
+	GameInfo getGameInfo() const override;
 	float getEnemySpeed() const override;
 
 protected:
@@ -63,6 +66,8 @@ protected:
 	void executeCommands();
 	void spawnEnemies();
 	void checkCollisions();
+	void updateUI();
+
 	int getEnemyCount() const;
 
 
@@ -78,6 +83,8 @@ protected:
 	std::stack<AbstractGameCommand*> m_executedCommands;
 
 	Rect<int> m_windowSize;
+	TextObject m_gameInfo;
+	std::vector<GameObject*> m_uiObjects = { &m_gameInfo };
 
 	int m_score = 0;
 };
