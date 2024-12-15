@@ -18,8 +18,8 @@ class SDLDrawer : public IVisitor
 {
 public:
 	~SDLDrawer();
-	//void visitPlayer(AbsPlayer* player) override;
 	//void visitMissile(AbsMissile* missile) override;
+	void visitPlayer(AbsPlayer* player) override;
 	void visitObject(GameObject* obj) override;
 	void visitTextObject(TextObject* text) override;
 

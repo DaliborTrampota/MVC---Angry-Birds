@@ -15,8 +15,7 @@ AbsPlayer::AbsPlayer(Vec2<float> pos, float initAngle, int initPower) :
 
 void AbsPlayer::acceptVisitor(IVisitor* visitor)
 {
-	//visitor->visitPlayer(this);
-	visitor->visitObject(this);
+	visitor->visitPlayer(this);
 }
 
 float AbsPlayer::getAngle() const

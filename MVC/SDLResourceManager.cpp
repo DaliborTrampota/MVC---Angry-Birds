@@ -21,6 +21,7 @@ void SDLResourceManager::loadResources()
     loadResource("enemy2.png");
     loadResource("enemy2WithBlood.png");
     loadResource("collision.png");
+    loadResource("arrow.png");
 }
 
 void SDLResourceManager::loadResource(const char* name)

@@ -210,9 +210,9 @@ void Model::updateUI()
 {
 	auto info = getGameInfo();
 	std::stringstream text;
-	text << "HP: " << info.hp << "/" << PlayerHealth << " | Shooting mode: " << m_player->activeShootingMode()->name();
+	text << "Shooting mode: " << m_player->activeShootingMode()->name();
 	text << " | Movement: " << s_movingStrategies[m_movingStrategyIndex]->name() << std::endl;
-	text << "Score: " << info.score << " | Power: " << info.power << std::endl;
+	text << "HP: " << info.hp << "/" << PlayerHealth << " | Score: " << info.score << " | Power: " << info.power << std::endl;
 
 	m_gameInfo.setText(text.str());
 }

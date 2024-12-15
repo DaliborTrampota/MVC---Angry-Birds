@@ -25,6 +25,19 @@ SDLDrawer::~SDLDrawer()
 	//TTF_Quit();
 }
 
+void SDLDrawer::visitPlayer(AbsPlayer* player)
+{
+	draw(player);
+	auto pos = player->getPosition();
+	pos.x += 25;
+	auto texData = m_resourceMgr->getResource("arrow.png");
+
+	SDL_Rect arrow = { pos.x, pos.y, texData.dims.x, texData.dims.y };
+	SDL_Point rotPoint = { 0, texData.dims.y / 2 };
+
+	SDL_RenderCopyEx(m_renderer, texData.tex, NULL, &arrow, player->getAngle() * (180 / M_PI), &rotPoint, SDL_FLIP_NONE);
+}
+
 void SDLDrawer::visitObject(GameObject* obj)
 {
 	draw(obj);
