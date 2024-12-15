@@ -121,12 +121,22 @@ void Model::toggleShootingMode()
 void Model::update(float dt)
 {
 	updateUI();
+	
+	if (m_player->getHP() <= 0) {
+		if (m_uiObjects.size() != 2) {
+			Rect<int> scr = getWindowSize();
+			TextObject* gameOver = new TextObject("Game over!", { scr.w / 2 - 80, scr.h / 2 }, 32);
+			m_uiObjects.push_back(gameOver);
+			notifyObservers();
+		}
+		return;
+	}
 
 	moveMissiles(dt);
 	moveEnemies(dt);
 	checkCollisions();
 	spawnEnemies();
-	executeCommands();	
+	executeCommands();
 }
 
 void Model::setWindowSize(Rect<int> dims)

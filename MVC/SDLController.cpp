@@ -10,15 +10,20 @@
 
 #include "CareTaker.h"
 
-#define CheckPress(states, keyCode) if (states[keyCode]) onKeyPress(keyCode);
+#define CheckPress(states, keyCode, singleShot) if (states[keyCode]) onKeyPress(keyCode, singleShot);
 
 
 SDLController::SDLController(IModel* model) : m_model(model)
 {
 }
 
-void SDLController::onKeyPress(SDL_Scancode key)
+void SDLController::onKeyPress(SDL_Scancode key, bool singleShot)
 {
+	if (singleShot) {
+		if (m_states[key]) return;
+		m_states[key] = 1;
+	}
+
 	switch (key) {
 	case SDL_SCANCODE_UP:
 		m_model->registerCommand(new MovePlrUpCmd(m_model));
@@ -36,7 +41,7 @@ void SDLController::onKeyPress(SDL_Scancode key)
 		m_model->registerCommand(new UniversalCmd(m_model, std::bind(&IModel::aimUp, m_model)));
 		break;
 
-	case SDL_SCANCODE_Y:
+	case SDL_SCANCODE_Z:
 		m_model->registerCommand(new UniversalCmd(m_model, std::bind(&IModel::aimDown, m_model)));
 		break;
 
@@ -64,7 +69,7 @@ void SDLController::onKeyPress(SDL_Scancode key)
 		CareTaker::get()->restoreMemento();
 		break;
 
-	case SDL_SCANCODE_Z:
+	case SDL_SCANCODE_Y:
 		m_model->undoLastCommand();
 		break;
 
@@ -85,6 +90,12 @@ void SDLController::pollEvents()
 		m_exit = true;
 		break;
 
+	case SDL_KEYUP:
+		if (m_states[e.key.keysym.scancode]) {
+			m_states[e.key.keysym.scancode] = 0;
+		}
+		break;
+
 	case SDL_WINDOWEVENT:
 		if (e.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
 			m_model->setWindowSize({ 0, 0, e.window.data1, e.window.data2 });
@@ -99,16 +110,16 @@ void SDLController::processInputs()
 {
 	const Uint8* keyStates = SDL_GetKeyboardState(NULL);
 
-	CheckPress(keyStates, SDL_SCANCODE_UP);
-	CheckPress(keyStates, SDL_SCANCODE_DOWN);
-	CheckPress(keyStates, SDL_SCANCODE_SPACE);
-	CheckPress(keyStates, SDL_SCANCODE_A);
-	CheckPress(keyStates, SDL_SCANCODE_Y);
-	CheckPress(keyStates, SDL_SCANCODE_F);
-	CheckPress(keyStates, SDL_SCANCODE_D);
-	CheckPress(keyStates, SDL_SCANCODE_M);
-	CheckPress(keyStates, SDL_SCANCODE_N);
-	CheckPress(keyStates, SDL_SCANCODE_S);
-	CheckPress(keyStates, SDL_SCANCODE_R);
-	CheckPress(keyStates, SDL_SCANCODE_Z);
+	CheckPress(keyStates, SDL_SCANCODE_UP, false)
+	CheckPress(keyStates, SDL_SCANCODE_DOWN, false)
+	CheckPress(keyStates, SDL_SCANCODE_SPACE, true)
+	CheckPress(keyStates, SDL_SCANCODE_A, false);
+	CheckPress(keyStates, SDL_SCANCODE_Z, false);
+	CheckPress(keyStates, SDL_SCANCODE_F, true);
+	CheckPress(keyStates, SDL_SCANCODE_D, true);
+	CheckPress(keyStates, SDL_SCANCODE_M, true);
+	CheckPress(keyStates, SDL_SCANCODE_N, true);
+	CheckPress(keyStates, SDL_SCANCODE_S, true);
+	CheckPress(keyStates, SDL_SCANCODE_R, true);
+	CheckPress(keyStates, SDL_SCANCODE_Y, true);
 }
