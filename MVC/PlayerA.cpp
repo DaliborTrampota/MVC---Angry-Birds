@@ -1,5 +1,9 @@
 #include "PlayerA.h"
 
+#include <algorithm>
+#define _USE_MATH_DEFINES
+#include <math.h>
+
 #include "GameObjectFactoryA.h"
 #include "SingleShootingMode.h"
 
@@ -20,16 +24,17 @@ void PlayerA::moveUp()
 void PlayerA::moveDown()
 {
     m_pos += { 0, 1 * PlayerMoveSpeed };
+    //m_pos.y = std::clamp(m_pos.y, 0, );
 }
 
 void PlayerA::aimUp()
 {
-    m_angle -= AngleStep;
+    m_angle = std::clamp(m_angle - AngleStep, -(float)M_PI_2, (float)M_PI_2);
 }
 
 void PlayerA::aimDown()
 {
-    m_angle += AngleStep;
+    m_angle = std::clamp(m_angle + AngleStep, -(float)M_PI_2, (float)M_PI_2);
 }
 
 void PlayerA::powerUp()

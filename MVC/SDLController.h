@@ -6,6 +6,7 @@
 #undef main
 
 
+
 class IModel;
 
 // SDL2 Controller
@@ -24,6 +25,7 @@ private:
 
 
 	void pollEvents();
+	void processInputs();
 
 	friend class Game;
 };

@@ -10,6 +10,9 @@
 
 #include "CareTaker.h"
 
+#define CheckPress(states, keyCode) if (states[keyCode]) onKeyPress(keyCode);
+
+
 SDLController::SDLController(IModel* model) : m_model(model)
 {
 }
@@ -82,13 +85,30 @@ void SDLController::pollEvents()
 		m_exit = true;
 		break;
 
-	case SDL_KEYDOWN:
-		onKeyPress(e.key.keysym.scancode);
-		break;
-
 	case SDL_WINDOWEVENT:
 		if (e.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
 			m_model->setWindowSize({ 0, 0, e.window.data1, e.window.data2 });
 		}
+		break;
 	}
+	processInputs();
+}
+
+
+void SDLController::processInputs()
+{
+	const Uint8* keyStates = SDL_GetKeyboardState(NULL);
+
+	CheckPress(keyStates, SDL_SCANCODE_UP);
+	CheckPress(keyStates, SDL_SCANCODE_DOWN);
+	CheckPress(keyStates, SDL_SCANCODE_SPACE);
+	CheckPress(keyStates, SDL_SCANCODE_A);
+	CheckPress(keyStates, SDL_SCANCODE_Y);
+	CheckPress(keyStates, SDL_SCANCODE_F);
+	CheckPress(keyStates, SDL_SCANCODE_D);
+	CheckPress(keyStates, SDL_SCANCODE_M);
+	CheckPress(keyStates, SDL_SCANCODE_N);
+	CheckPress(keyStates, SDL_SCANCODE_S);
+	CheckPress(keyStates, SDL_SCANCODE_R);
+	CheckPress(keyStates, SDL_SCANCODE_Z);
 }
