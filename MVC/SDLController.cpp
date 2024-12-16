@@ -79,6 +79,11 @@ void SDLController::onKeyPress(SDL_Scancode key, bool singleShot)
 	}
 }
 
+bool SDLController::quit() const
+{
+	return m_exit;
+}
+
 
 
 void SDLController::pollEvents()
@@ -122,4 +127,5 @@ void SDLController::processInputs()
 	CheckPress(keyStates, SDL_SCANCODE_S, true);
 	CheckPress(keyStates, SDL_SCANCODE_R, true);
 	CheckPress(keyStates, SDL_SCANCODE_Y, true);
+	CheckPress(keyStates, SDL_SCANCODE_ESCAPE, true);
 }

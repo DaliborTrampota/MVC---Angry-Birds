@@ -6,7 +6,15 @@
 #include "SDL2/SDL_image.h"
 
 
-SDLResourceManager::SDLTextureWrapper SDLResourceManager::getResource(const char* name) const
+
+SDLResourceManager::~SDLResourceManager()
+{
+    for (auto& [name, wrap] : m_textures) {
+        SDL_DestroyTexture(wrap.tex);
+    }
+}
+
+SDLResourceManager::TexWrapper SDLResourceManager::getResource(const char* name) const
 {
     return m_textures.at(name);
 }
@@ -29,9 +37,10 @@ void SDLResourceManager::loadResource(const char* name)
     std::string path("resources/images/");
     path.append(name);
     SDL_Surface* surface = IMG_Load(path.c_str());
-    SDLTextureWrapper texture;
-    texture.tex = SDL_CreateTextureFromSurface(m_renderer, surface);
-    texture.dims = { surface->w, surface->h };
-    m_textures[name] = texture;
+    TexWrapper texture{
+        SDL_CreateTextureFromSurface(m_renderer, surface),
+        { surface->w, surface->h }
+    };
+    m_textures[name] = std::move(texture);
     SDL_FreeSurface(surface);
 }

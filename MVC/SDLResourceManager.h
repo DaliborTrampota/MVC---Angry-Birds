@@ -10,19 +10,19 @@ class SDLResourceManager
 {
 public:
 	SDLResourceManager(SDL_Renderer* renderer) : m_renderer(renderer) {};
+	~SDLResourceManager();
 
-	struct SDLTextureWrapper {
+	struct TexWrapper {
 		SDL_Texture* tex;
 		Vec2<int> dims;
 	};
 
-
-	SDLTextureWrapper getResource(const char* name) const;
+	TexWrapper getResource(const char* name) const;
 	void loadResources();
 
 private:
 	SDL_Renderer* m_renderer;
-	std::unordered_map<const char*, SDLTextureWrapper> m_textures;
+	std::unordered_map<const char*, TexWrapper> m_textures;
 
 	void loadResource(const char* name);
 };

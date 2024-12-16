@@ -9,15 +9,11 @@
 #include <string>
 
 class IModel;
-class GameObject;
-struct SDL_Rect;
-
 
 // SDL2 View
 class SDLView : public IObserver // : public IView
 {
 public:
-	SDLView() = default;
 	SDLView(IModel* model);
 
 	void render();

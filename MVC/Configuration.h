@@ -19,7 +19,7 @@
 // Shooting
 #define InitAngle 0.0f
 #define InitPower 1500
-#define AngleStep 3.14159f / 32.f
+#define RotationSpeed 0.02f
 #define PowerStep 100
 #define MaxPower 3000
 #define MinPower 500

@@ -29,12 +29,12 @@ void PlayerA::moveDown()
 
 void PlayerA::aimUp()
 {
-    m_angle = std::clamp(m_angle - AngleStep, -(float)M_PI_2, (float)M_PI_2);
+    m_angle = std::clamp(m_angle - RotationSpeed, -(float)M_PI_2, (float)M_PI_2);
 }
 
 void PlayerA::aimDown()
 {
-    m_angle = std::clamp(m_angle + AngleStep, -(float)M_PI_2, (float)M_PI_2);
+    m_angle = std::clamp(m_angle + RotationSpeed, -(float)M_PI_2, (float)M_PI_2);
 }
 
 void PlayerA::powerUp()

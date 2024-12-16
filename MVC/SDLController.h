@@ -16,17 +16,15 @@ public:
 	SDLController() = default;
 	SDLController(IModel* model);
 
-
-	void onKeyPress(SDL_Scancode key, bool singleShot = false);
+	void pollEvents();
+	bool quit() const;
 
 private:
 	IModel* m_model;
 	bool m_exit = false;
 	Uint8* m_states = new Uint8(0);
 
-	void pollEvents();
+	void onKeyPress(SDL_Scancode key, bool singleShot = false);
 	void processInputs();
-
-	friend class Game;
 };
 

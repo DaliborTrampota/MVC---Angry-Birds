@@ -10,11 +10,6 @@
 #include "SDL2/SDL_ttf.h"
 
 
-//void SDLDrawer::visitPlayer(AbsPlayer* player)
-//{
-//	draw(player);
-//}
-//
 //void SDLDrawer::visitMissile(AbsMissile* missile)
 //{
 //	draw(missile);
@@ -22,7 +17,7 @@
 
 SDLDrawer::~SDLDrawer()
 {
-	//TTF_Quit();
+	TTF_Quit();
 }
 
 void SDLDrawer::visitPlayer(AbsPlayer* player)

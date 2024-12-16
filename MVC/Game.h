@@ -13,8 +13,6 @@ public:
 
 	void Run();
 
-	Rect<int> getWindowRect() const;
-
 private:
 	IModel* m_model;
 	SDLView m_view;

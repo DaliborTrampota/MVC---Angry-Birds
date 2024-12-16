@@ -6,10 +6,11 @@
 #include "SDL2/SDL.h"
 
 
-SDLView::SDLView(IModel* model) : m_model(model)
+SDLView::SDLView(IModel* model) : 
+	m_model(model),
+	m_cont(model)
 {
 	m_gameDrawer.initSDL();
-	m_cont = SDLController(m_model);
 	model->registerObserver(this);
 }
 

@@ -1,8 +1,9 @@
 #pragma once
 
+#include <string>
+
 #include "IVisitor.h"
 #include "SDLResourceManager.h"
-#include <string>
 
 
 struct SDL_Window;
@@ -10,15 +11,15 @@ struct SDL_Renderer;
 struct SDL_Rect;
 
 class GameObject;
+class TextObject;
 class AbsPlayer;
-class AbsMissile;
 
 
 class SDLDrawer : public IVisitor
 {
 public:
 	~SDLDrawer();
-	//void visitMissile(AbsMissile* missile) override;
+
 	void visitPlayer(AbsPlayer* player) override;
 	void visitObject(GameObject* obj) override;
 	void visitTextObject(TextObject* text) override;
