@@ -16,6 +16,10 @@
 
 #include "AbstractGameCommand.h"
 
+#include "Frame.h"
+#include "Button.h"
+#include "Text.h"
+
 #include "Configuration.h"
 
 
@@ -30,6 +34,7 @@ Model::Model() :
 	m_player(nullptr),
 	m_windowSize({ 0, 0, WindowWidth, WindowHeight })
 {
+	createScreens();
 	m_objectFactory = new GameObjectFactoryA(this);
 	m_player = m_objectFactory->createPlayer({ PlayerX, WindowHeight / 2 });
 }
@@ -123,12 +128,14 @@ void Model::update(float dt)
 	updateUI();
 	
 	if (m_player->getHP() <= 0) {
-		if (m_uiObjects.size() != 2) {
+		m_activeScreen = Screens::GameOver;
+		notifyObservers();
+		/*if (m_uiObjects.size() != 2) {
 			Rect<int> scr = getWindowSize();
 			TextObject* gameOver = new TextObject("Game over!", { scr.w / 2 - 80, scr.h / 2 }, 32);
 			m_uiObjects.push_back(gameOver);
 			notifyObservers();
-		}
+		}*/
 		return;
 	}
 
@@ -218,13 +225,17 @@ void Model::checkCollisions()
 
 void Model::updateUI()
 {
-	auto info = getGameInfo();
-	std::stringstream text;
-	text << "Shooting mode: " << m_player->activeShootingMode()->name();
-	text << " | Movement: " << s_movingStrategies[m_movingStrategyIndex]->name() << std::endl;
-	text << "HP: " << info.hp << "/" << PlayerHealth << " | Score: " << info.score << " | Power: " << info.power << std::endl;
+	if (m_activeScreen == Screens::Play) {
+		Text* infoText = dynamic_cast<Text*>(m_screens[m_activeScreen]->get(0));
 
-	m_gameInfo.setText(text.str());
+		auto info = getGameInfo();
+		std::stringstream text;
+		text << "Shooting mode: " << m_player->activeShootingMode()->name();
+		text << " | Movement: " << s_movingStrategies[m_movingStrategyIndex]->name() << std::endl;
+		text << "HP: " << info.hp << "/" << PlayerHealth << " | Score: " << info.score << " | Power: " << info.power << std::endl;
+
+		infoText->setText(text.str());
+	}
 }
 
 int Model::getEnemyCount() const
@@ -232,10 +243,39 @@ int Model::getEnemyCount() const
 	return 5 + EnemyCountCoef * m_score;
 }
 
+void Model::createScreens()
+{
+	Frame* playInterface = new Frame({ 0, 0, 1, 1 });
+	playInterface->add(new Text("GameInfo", { 0, 0 }));
+
+	Frame* welcomeScr = new Frame({ 0, 0, 1, 1 });
+	welcomeScr->add(new Button({0.4, 0.46, 0.2, 0.08 }, "Play", [this]() {
+		m_activeScreen = Screens::Play;
+		}));
+
+	Frame* gameOver = new Frame({ 0, 0, 1, 1 });
+	gameOver->add((new Text("Game Over!", { 0.5, 0.5 }, 32))->setAlignment(Text::Middle, Text::Center));
+	gameOver->add(new Button({ 0.45, 0.75, 0.1, 0.08 }, "Quit", [this]() {
+		m_quit = true;
+		}));
+
+	m_screens[Screens::Menu] = welcomeScr;
+	m_screens[Screens::Play] = playInterface;
+	m_screens[Screens::GameOver] = gameOver;
+}
+
 float Model::getEnemySpeed() const {
 	return 1.f + EnemySpeedCoef * sqrt(m_score);
 }
 
+bool Model::quit() const
+{
+	return m_quit;
+}
+
+
+
+// Commands ============================
 IModel::Memento* Model::createMemento()
 {
 	auto plr = getPlayer();
@@ -287,11 +327,23 @@ std::vector<GameObject*> Model::getObjects() const
 	return objects;
 }
 
-std::vector<GameObject*> Model::getUIObjects() const
+Frame* Model::getActiveScreen()
 {
-	return m_uiObjects;
+	return m_screens[m_activeScreen];
 }
 
+void Model::mouseClicked(int btn, Vec2<int> pos)
+{
+	if (btn == 1) {
+		Frame* screen = getActiveScreen();
+
+		for (auto& clickable : screen->getAll<IClickable>(true)) {
+			clickable->processClick(pos);
+		}
+	}
+}
+
+// Observer ============================
 void Model::registerObserver(IObserver* observer)
 {
 	m_observers.insert(observer);

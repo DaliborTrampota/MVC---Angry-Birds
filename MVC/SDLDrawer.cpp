@@ -6,6 +6,10 @@
 #include "TextObject.h"
 #include "AbsPlayer.h"
 
+#include "Frame.h"
+#include "Button.h"
+#include "Text.h"
+
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_ttf.h"
 
@@ -43,6 +47,11 @@ void SDLDrawer::visitTextObject(TextObject* text)
 	draw(text);
 }
 
+void SDLDrawer::visitUI(Frame* screen)
+{
+	drawFrame(screen, getWindowRect());
+}
+
 void SDLDrawer::drawBackground()
 {
 	draw("back.jpg", NULL);
@@ -64,6 +73,69 @@ void SDLDrawer::draw(const char* texName, SDL_Rect* rect)
 {
 	SDL_Texture* tex = m_resourceMgr->getResource(texName).tex;
 	int res = SDL_RenderCopy(m_renderer, tex, NULL, rect);
+}
+
+void SDLDrawer::drawFrame(Frame* frame, SDL_Rect parentBounds)
+{
+	SDL_Rect renderRect = convertToSDLRect(frame->getBounds(), frame->getUnits(), parentBounds);
+
+	if (auto button = dynamic_cast<Button*>(frame)) {
+		button->setAbsoluteBounds({ renderRect.x, renderRect.y, renderRect.w, renderRect.h });
+		SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
+		SDL_RenderDrawRect(m_renderer, &renderRect);
+	} 
+	else if (auto text = dynamic_cast<Text*>(frame)) {
+		auto style = text->getStyle();
+		TTF_Font* font = TTF_OpenFont("D:/GithubPersonal/MVC/Game/resources/fonts/arial.ttf", style.fontSize);
+		if (!font)
+			throw "font not loaded";
+
+		SDL_Surface* surface = TTF_RenderText_Blended_Wrapped(
+			font,
+			text->getText(),
+			{ uint8_t(style.color[0] * 255), uint8_t(style.color[1] * 255), uint8_t(style.color[2] * 255) },
+			NULL
+		);
+		SDL_Texture* texture = SDL_CreateTextureFromSurface(m_renderer, surface);
+		TTF_CloseFont(font);
+
+		SDL_QueryTexture(texture, NULL, NULL, &renderRect.w, &renderRect.h);
+		auto [base, align] = text->getAlignment();
+		switch (base) {
+		//case Text::Top:// is default behaviour
+		//	renderRect.y -= renderRect.h;
+		//	break;
+		case Text::Middle:
+			renderRect.y -= renderRect.h / 2;
+			break;
+		case Text::Bottom:
+			renderRect.y -= renderRect.h;
+			break;
+		}
+
+		switch (align) {
+		// case Text::Left: // is default behaviour
+		case Text::Center:
+			renderRect.x -= renderRect.w / 2;
+			break;
+		case Text::Right:
+			renderRect.x -= renderRect.w;
+			break;
+		}
+
+		int res = SDL_RenderCopy(m_renderer, texture, NULL, &renderRect);
+
+		SDL_DestroyTexture(texture);
+		SDL_FreeSurface(surface);
+	}
+	else {
+		//SDL_SetRenderDrawColor(m_renderer, 0, 0, 255, 255);
+		//SDL_RenderDrawRect(m_renderer, &renderRect);
+	}
+
+	for (auto& e : frame->getAll()) {
+		drawFrame(e, renderRect);
+	}
 }
 
 void SDLDrawer::draw(TextObject* text)
@@ -125,4 +197,26 @@ SDL_Rect SDLDrawer::getWindowRect() const
 	int w, h;
 	SDL_GetRendererOutputSize(m_renderer, &w, &h);
 	return SDL_Rect{ 0, 0, w, h };
+}
+
+Rect<float> SDLDrawer::getAbsoluteBounds(Rect<float> bounds, Units units, Rect<float> parentBounds, Units parentUnits) const
+{
+	if (units == Units::Relative) {
+		
+		//bounds.x = window.w * bounds.x;
+	}
+	return Rect<float>();
+}
+
+SDL_Rect SDLDrawer::convertToSDLRect(Rect<float> bounds, Units units, SDL_Rect parent) const
+{
+	if (units == Units::Absolute)
+		return { (int)bounds.x, (int)bounds.y, (int)bounds.w, (int)bounds.h };
+
+	return { 
+		(int)(parent.x + parent.w * bounds.x),
+		(int)(parent.y + parent.h * bounds.y),
+		(int)(parent.w * bounds.w),
+		(int)(parent.h * bounds.h)
+	};
 }

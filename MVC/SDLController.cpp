@@ -4,6 +4,7 @@
 #include "MyMath.h"
 #include "SDL2/SDL.h"
 
+#include "AbsPlayer.h"
 #include "MovePlrDownCmd.h"
 #include "MovePlrUpCmd.h"
 #include "UniversalCmd.h"
@@ -73,6 +74,10 @@ void SDLController::onKeyPress(SDL_Scancode key, bool singleShot)
 		m_model->undoLastCommand();
 		break;
 
+	case SDL_SCANCODE_H:
+		m_model->getPlayer()->setHP(0);
+		break;
+
 
 	case SDL_SCANCODE_ESCAPE:
 		m_exit = true;
@@ -99,6 +104,10 @@ void SDLController::pollEvents()
 		if (m_states[e.key.keysym.scancode]) {
 			m_states[e.key.keysym.scancode] = 0;
 		}
+		break;
+
+	case SDL_MOUSEBUTTONDOWN:
+		m_model->mouseClicked(e.button.button, { e.button.x, e.button.y });
 		break;
 
 	case SDL_WINDOWEVENT:
@@ -128,4 +137,5 @@ void SDLController::processInputs()
 	CheckPress(keyStates, SDL_SCANCODE_R, true);
 	CheckPress(keyStates, SDL_SCANCODE_Y, true);
 	CheckPress(keyStates, SDL_SCANCODE_ESCAPE, true);
+	CheckPress(keyStates, SDL_SCANCODE_H, true);
 }

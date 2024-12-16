@@ -14,6 +14,7 @@ class AbsPlayer;
 class AbsMissile;
 class IGameObjectFactory;
 class AbstractGameCommand;
+class Frame;
 
 class IModel : public IObservable
 {
@@ -32,8 +33,8 @@ public:
 
 	virtual AbsPlayer* getPlayer() const = 0;
 	virtual std::vector<GameObject*> getObjects() const = 0;
-	virtual std::vector<GameObject*> getUIObjects() const = 0;
 	virtual IMovingStrategy* getMovingStrategy() const = 0;
+	virtual Frame* getActiveScreen() = 0;
 
 
 	struct Memento {
@@ -51,6 +52,7 @@ public:
 
 	virtual void setWindowSize(Rect<int> dims) = 0;
 	virtual Rect<int> getWindowSize() const = 0;
+	virtual void mouseClicked(int btn, Vec2<int> pos) = 0;
 
 	struct GameInfo {
 		int score;
@@ -62,5 +64,7 @@ public:
 
 	virtual GameInfo getGameInfo() const = 0;
 	virtual float getEnemySpeed() const = 0;
+
+	virtual bool quit() const = 0;
 };
 

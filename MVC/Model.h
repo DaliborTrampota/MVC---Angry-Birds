@@ -18,6 +18,7 @@ class AbsMissile;
 class AbsEnemy;
 class IGameObjectFactory;
 class AbstractGameCommand;
+class Frame;
 
 class Model : public IModel
 {
@@ -38,8 +39,9 @@ public:
 
 	AbsPlayer* getPlayer() const override;
 	std::vector<GameObject*> getObjects() const override;
-	std::vector<GameObject*> getUIObjects() const override;
 	IMovingStrategy* getMovingStrategy() const override;
+	Frame* getActiveScreen() override;
+	void mouseClicked(int btn, Vec2<int> pos) override;
 
 	Memento* createMemento() override;
 	void setMemento(Memento* memento) override;
@@ -58,6 +60,8 @@ public:
 	GameInfo getGameInfo() const override;
 	float getEnemySpeed() const override;
 
+	bool quit() const;
+
 protected:
 	void moveMissiles(float dt);
 	void moveEnemies(float dt);
@@ -69,6 +73,14 @@ protected:
 	void updateUI();
 
 	int getEnemyCount() const;
+
+	enum class Screens {
+		Menu,
+		Play,
+		GameOver,
+	};
+
+	void createScreens();
 
 
 	IGameObjectFactory* m_objectFactory;
@@ -83,9 +95,10 @@ protected:
 	std::stack<AbstractGameCommand*> m_executedCommands;
 
 	Rect<int> m_windowSize;
-	TextObject m_gameInfo;
-	std::vector<GameObject*> m_uiObjects = { &m_gameInfo };
+	std::unordered_map<Screens, Frame*> m_screens;
+	Screens m_activeScreen;
 
 	int m_score = 0;
+	bool m_quit = false;
 };
 

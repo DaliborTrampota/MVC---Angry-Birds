@@ -51,8 +51,12 @@ public:
 		return m_subject->getObjects();
 	}
 
-	std::vector<GameObject*> getUIObjects() const override {
-		return m_subject->getUIObjects();
+	Frame* getActiveScreen() override {
+		return m_subject->getActiveScreen();
+	}
+
+	void mouseClicked(int btn, Vec2<int> pos) override {
+		m_subject->mouseClicked(btn, pos);
 	}
 
 	IMovingStrategy* getMovingStrategy() const override {
@@ -100,7 +104,10 @@ public:
 		return m_subject->getEnemySpeed();
 	}
 
-protected:
+	bool quit() const override {
+		return m_subject->quit();
+	}
+
 	void update(float dt) override {
 		m_subject->update(dt);
 	}

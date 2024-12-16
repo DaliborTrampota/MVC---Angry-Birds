@@ -4,6 +4,7 @@
 
 #include "IVisitor.h"
 #include "SDLResourceManager.h"
+#include "Frame.h"
 
 
 struct SDL_Window;
@@ -23,6 +24,7 @@ public:
 	void visitPlayer(AbsPlayer* player) override;
 	void visitObject(GameObject* obj) override;
 	void visitTextObject(TextObject* text) override;
+	void visitUI(Frame* screen) override;
 
 	void drawBackground();
 
@@ -30,6 +32,7 @@ public:
 	void draw(TextObject* text);
 	void draw(GameObject* obj, const char* texName);
 	void draw(const char* texName, SDL_Rect* dstRect);
+	void drawFrame(Frame* frame, SDL_Rect parentBounds);
 
 	void initSDL();
 	void clear();
@@ -42,6 +45,9 @@ private:
 	SDL_Renderer* m_renderer;
 
 	SDLResourceManager* m_resourceMgr;
+
+	Rect<float> getAbsoluteBounds(Rect<float> bounds, Units units, Rect<float> parentBounds, Units parentUnits) const;
+	SDL_Rect convertToSDLRect(Rect<float> bounds, Units units, SDL_Rect parentBounds) const;
 
 	friend class SDLView;
 };

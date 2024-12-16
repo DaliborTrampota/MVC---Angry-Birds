@@ -57,6 +57,9 @@
     <Filter Include="Source Files\Model\Object">
       <UniqueIdentifier>{0ce0f36e-4efa-4c76-915a-1c0462e294ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\View\UI">
+      <UniqueIdentifier>{eaa73db6-30ed-485c-90c1-ebf334f70f66}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -136,6 +139,15 @@
     </ClCompile>
     <ClCompile Include="TeleportStrategy.cpp">
       <Filter>Source Files\Strategy\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame.cpp">
+      <Filter>Source Files\View\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\View\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Source Files\View\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -273,6 +285,18 @@
     </ClInclude>
     <ClInclude Include="TextObject.h">
       <Filter>Source Files\Model\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Frame.h">
+      <Filter>Source Files\View\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Source Files\View\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Source Files\View\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="IClickable.h">
+      <Filter>Source Files\View\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

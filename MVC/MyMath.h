@@ -74,4 +74,8 @@ struct Vec2 {
 template <class T = int>
 struct Rect {
 	T x, y, w, h;
+
+	bool includes(const Vec2<T>& point) const {
+		return x < point.x && (x + w) > point.x && y < point.y && (y + h) > point.y;
+	}
 };

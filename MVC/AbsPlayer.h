@@ -38,6 +38,7 @@ public:
 
 	void takeDamage(int dmg);
 	int getHP() const;
+	void setHP(int hp) { m_hp = hp; }
 	IShootingMode* activeShootingMode() const;
 
 protected:

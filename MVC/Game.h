@@ -10,6 +10,9 @@ class Game
 {
 public:
 	Game();
+	~Game() {
+		delete m_model;
+	}
 
 	void Run();
 

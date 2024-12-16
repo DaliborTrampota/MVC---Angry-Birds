@@ -2,6 +2,7 @@
 
 #include "IModel.h"
 #include "GameObject.h"
+#include "Frame.h"
 
 #include "SDL2/SDL.h"
 
@@ -21,9 +22,7 @@ void SDLView::render()
 	for (auto& obj : m_model->getObjects()) {
 		obj->acceptVisitor(&m_gameDrawer);
 	}
-	for (auto& element : m_model->getUIObjects()) {
-		element->acceptVisitor(&m_gameDrawer);
-	}
+	m_model->getActiveScreen()->acceptVisitor(&m_gameDrawer);
 	m_gameDrawer.doRender();
 }
 
