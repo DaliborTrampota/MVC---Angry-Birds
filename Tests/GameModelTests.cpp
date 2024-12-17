@@ -15,7 +15,7 @@
 
 void undoLastCommand()
 {
-    IModel* model = new Model();
+    IModel* model = new MockedModel(); 
     auto plr = model->getPlayer();
     auto beginPos = plr->getPosition();
 

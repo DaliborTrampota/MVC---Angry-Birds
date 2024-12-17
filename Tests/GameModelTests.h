@@ -7,14 +7,21 @@
 #include "../MVC/Model.h"
 #include "../MVC/AbsPlayer.h"
 #include "../MVC/PlayerA.h"
+#include "../MVC/GameObjectFactoryA.h"
 
 
 
 
 class MockedModel : public Model {
 public:
+    MockedModel() {
+        m_activeScreen = Screens::Play;
+        m_player = new PlayerA({ 10, 50 });
+        static_cast<PlayerA*>(m_player)->setFactory(new GameObjectFactoryA(this));
+    }
+
     AbsPlayer* getPlayer() const override {
-        return new PlayerA({ 10, 50 });
+        return m_player;
     }
 
     void moveMissiles() {
