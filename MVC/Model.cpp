@@ -86,7 +86,7 @@ void Model::destroyMissiles()
 {
 	auto newEnd = std::remove_if(m_missiles.begin(), m_missiles.end(), [&](AbsMissile* missile) {
 		auto pos = missile->getPosition();
-		if (pos.x > m_windowSize.w || pos.x < 0 || pos.y > m_windowSize.h || pos.y < 0) {
+		if (pos.x > m_windowSize.w + 50 || pos.x < -50 || pos.y > m_windowSize.h + 50 || (missile->isActive() && pos.y < -50)) {
 			delete missile;
 			return true;
 		}
