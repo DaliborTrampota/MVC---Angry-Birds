@@ -5,21 +5,17 @@
 #include "MyMath.h"
 #include "IVisitable.h"
 
-class TextObject;
-
-enum class Units {
-	Relative,
-	Absolute,
-};
+#include "HelperStructs.h"
 
 class Frame : public IVisitable {
 public:
-	Frame(Rect<float> bounds, Units units = Units::Relative);
+	static Frame* create(Rect<float> bounds, Units units = Units::Relative);
 
 	void acceptVisitor(IVisitor* visitor) override;
 
-	virtual void add(Frame* element);
+	virtual Frame* add(Frame* element);
 	virtual void remove(Frame* element);
+
 	Frame* get(size_t idx);
 	std::vector<Frame*> getAll(bool includeThis = false);
 
@@ -39,14 +35,26 @@ public:
 		return res;
 	}
 
-	void setUnits(Units units);
-	void setBounds(Rect<float> newBounds, Units units = Units::Relative);
+	Frame* setUnits(Units units);
 	Units getUnits() const;
-	Rect<float> getBounds() const;
+
+	Frame* setBounds(BoundsPos newBounds, Units units = Units::Relative);
+	BoundsPos getBounds() const;
+
+	Frame* setStyle(FrameStyle style);
+	FrameStyle getStyle() const;
+
+	Frame* setAnchor(Anchor::Vertical vert, Anchor::Horizontal hor);
+	Anchor getAnchor() const;
 
 
 protected:
-	Rect<float> m_bounds;
+	Frame() = default;
+
+	BoundsPos m_bounds;
 	Units m_units;
 	std::vector<Frame*> m_elements;
+	FrameStyle m_style;
+	Anchor m_anchor = { Anchor::Top, Anchor::Left };
+
 };

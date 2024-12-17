@@ -77,51 +77,40 @@ void SDLDrawer::draw(const char* texName, SDL_Rect* rect)
 
 void SDLDrawer::drawFrame(Frame* frame, SDL_Rect parentBounds)
 {
-	SDL_Rect renderRect = convertToSDLRect(frame->getBounds(), frame->getUnits(), parentBounds);
+	SDL_Rect renderRect = convertToSDLRect(frame->getBounds().bounds, frame->getUnits(), parentBounds);
+
+
+	auto style = frame->getStyle();
+
+	SDL_SetRenderDrawColor(m_renderer, style.color[0] * 255, style.color[1] * 255, style.color[2] * 255, style.color[3] * 255);
+	auto drawRectFunc = style.filled ? SDL_RenderFillRect : SDL_RenderDrawRect;
+
+
+	auto anchor = frame->getAnchor();
+	applyAnchor(renderRect, anchor);
+
 
 	if (auto button = dynamic_cast<Button*>(frame)) {
 		button->setAbsoluteBounds({ renderRect.x, renderRect.y, renderRect.w, renderRect.h });
-		SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
-		SDL_RenderDrawRect(m_renderer, &renderRect);
+		drawRectFunc(m_renderer, &renderRect);
 	} 
 	else if (auto text = dynamic_cast<Text*>(frame)) {
-		auto style = text->getStyle();
-		TTF_Font* font = TTF_OpenFont("D:/GithubPersonal/MVC/Game/resources/fonts/arial.ttf", style.fontSize);
+		auto fontStyle = text->getFont();
+		TTF_Font* font = TTF_OpenFont("D:/GithubPersonal/MVC/Game/resources/fonts/arial.ttf", fontStyle.size);
 		if (!font)
 			throw "font not loaded";
 
 		SDL_Surface* surface = TTF_RenderText_Blended_Wrapped(
 			font,
 			text->getText(),
-			{ uint8_t(style.color[0] * 255), uint8_t(style.color[1] * 255), uint8_t(style.color[2] * 255) },
+			{ uint8_t(fontStyle.color[0] * 255), uint8_t(fontStyle.color[1] * 255), uint8_t(fontStyle.color[2] * 255) },
 			NULL
 		);
 		SDL_Texture* texture = SDL_CreateTextureFromSurface(m_renderer, surface);
 		TTF_CloseFont(font);
 
 		SDL_QueryTexture(texture, NULL, NULL, &renderRect.w, &renderRect.h);
-		auto [base, align] = text->getAlignment();
-		switch (base) {
-		//case Text::Top:// is default behaviour
-		//	renderRect.y -= renderRect.h;
-		//	break;
-		case Text::Middle:
-			renderRect.y -= renderRect.h / 2;
-			break;
-		case Text::Bottom:
-			renderRect.y -= renderRect.h;
-			break;
-		}
-
-		switch (align) {
-		// case Text::Left: // is default behaviour
-		case Text::Center:
-			renderRect.x -= renderRect.w / 2;
-			break;
-		case Text::Right:
-			renderRect.x -= renderRect.w;
-			break;
-		}
+		applyAnchor(renderRect, anchor);
 
 		int res = SDL_RenderCopy(m_renderer, texture, NULL, &renderRect);
 
@@ -129,8 +118,7 @@ void SDLDrawer::drawFrame(Frame* frame, SDL_Rect parentBounds)
 		SDL_FreeSurface(surface);
 	}
 	else {
-		//SDL_SetRenderDrawColor(m_renderer, 0, 0, 255, 255);
-		//SDL_RenderDrawRect(m_renderer, &renderRect);
+		drawRectFunc(m_renderer, &renderRect);
 	}
 
 	for (auto& e : frame->getAll()) {
@@ -219,4 +207,29 @@ SDL_Rect SDLDrawer::convertToSDLRect(Rect<float> bounds, Units units, SDL_Rect p
 		(int)(parent.w * bounds.w),
 		(int)(parent.h * bounds.h)
 	};
+}
+
+void SDLDrawer::applyAnchor(SDL_Rect& rect, Anchor anchor)
+{
+	switch (anchor.vertical) {
+	case Anchor::Top:// is default behaviour
+		break;
+	case Anchor::Middle:
+		rect.y -= rect.h / 2;
+		break;
+	case Anchor::Bottom:
+		rect.y -= rect.h;
+		break;
+	}
+
+	switch (anchor.vertical) {
+	case Anchor::Left: // is default behaviour
+		break;
+	case Anchor::Center:
+		rect.x -= rect.w / 2;
+		break;
+	case Anchor::Right:
+		rect.x -= rect.w;
+		break;
+	}
 }

@@ -126,24 +126,19 @@ void Model::toggleShootingMode()
 void Model::update(float dt)
 {
 	updateUI();
-	
+
 	if (m_player->getHP() <= 0) {
 		m_activeScreen = Screens::GameOver;
 		notifyObservers();
-		/*if (m_uiObjects.size() != 2) {
-			Rect<int> scr = getWindowSize();
-			TextObject* gameOver = new TextObject("Game over!", { scr.w / 2 - 80, scr.h / 2 }, 32);
-			m_uiObjects.push_back(gameOver);
-			notifyObservers();
-		}*/
 		return;
 	}
-
-	moveMissiles(dt);
-	moveEnemies(dt);
-	checkCollisions();
-	spawnEnemies();
-	executeCommands();
+	if (m_activeScreen == Screens::Play) {
+		moveMissiles(dt);
+		moveEnemies(dt);
+		checkCollisions();
+		spawnEnemies();
+		executeCommands();
+	}
 }
 
 void Model::setWindowSize(Rect<int> dims)
@@ -236,6 +231,7 @@ void Model::updateUI()
 
 		infoText->setText(text.str());
 	}
+	notifyObservers();
 }
 
 int Model::getEnemyCount() const
@@ -245,23 +241,38 @@ int Model::getEnemyCount() const
 
 void Model::createScreens()
 {
-	Frame* playInterface = new Frame({ 0, 0, 1, 1 });
-	playInterface->add(new Text("GameInfo", { 0, 0 }));
+	Frame* playInterface = Frame::create({ 0, 0, 1, 1 })
+		->add(
+			Text::create("GameInfo", { 0, 0 })
+		);
 
-	Frame* welcomeScr = new Frame({ 0, 0, 1, 1 });
-	welcomeScr->add(new Button({0.4, 0.46, 0.2, 0.08 }, "Play", [this]() {
-		m_activeScreen = Screens::Play;
-		}));
+	Frame* welcomeScr = Frame::create({ 0, 0, 1, 1 })
+		->setStyle({ true, { 0.012, 0.694, 0.998, 1 }})
+		->add(
+			Text::create("Angrier Birds", { 0.5, 0.35 })
+				->setAnchor(Anchor::Middle, Anchor::Center)
+		)
+		->add(
+			Button::create({0.4, 0.46, 0.2, 0.08 }, "Play", [this]() { m_activeScreen = Screens::Play; })
+				->setStyle({ true, { 0, 0.85, 0, 1 }})
+		);
 
-	Frame* gameOver = new Frame({ 0, 0, 1, 1 });
-	gameOver->add((new Text("Game Over!", { 0.5, 0.5 }, 32))->setAlignment(Text::Middle, Text::Center));
-	gameOver->add(new Button({ 0.45, 0.75, 0.1, 0.08 }, "Quit", [this]() {
-		m_quit = true;
-		}));
+	Frame* gameOver = Frame::create({ 0, 0, 1, 1 })
+		->setStyle({ true, { 0.8, 0.1, 0.05, 1 } })
+		->add(
+			Text::create("Game Over!", { 0.5, 0.5 }, Font(32))
+				->setAnchor(Anchor::Middle, Anchor::Center)
+		)
+		->add(
+			Button::create({ 0.45, 0.75, 0.1, 0.08 }, "Quit", [this]() { m_quit = true; })
+				->setStyle({ true, { 1, 1, 1, 1 } })
+		);
 
 	m_screens[Screens::Menu] = welcomeScr;
 	m_screens[Screens::Play] = playInterface;
 	m_screens[Screens::GameOver] = gameOver;
+
+	m_activeScreen = Screens::Menu;
 }
 
 float Model::getEnemySpeed() const {

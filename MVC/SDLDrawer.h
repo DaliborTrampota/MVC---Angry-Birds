@@ -48,6 +48,7 @@ private:
 
 	Rect<float> getAbsoluteBounds(Rect<float> bounds, Units units, Rect<float> parentBounds, Units parentUnits) const;
 	SDL_Rect convertToSDLRect(Rect<float> bounds, Units units, SDL_Rect parentBounds) const;
+	void applyAnchor(SDL_Rect& rect, Anchor anchor);
 
 	friend class SDLView;
 };

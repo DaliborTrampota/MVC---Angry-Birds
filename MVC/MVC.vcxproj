@@ -172,6 +172,7 @@
     <ClInclude Include="DoubleShootingMode.h" />
     <ClInclude Include="EnemyA.h" />
     <ClInclude Include="GameModelProxy.h" />
+    <ClInclude Include="HelperStructs.h" />
     <ClInclude Include="IClickable.h" />
     <ClInclude Include="ICollidable.h" />
     <ClInclude Include="IController.h" />
